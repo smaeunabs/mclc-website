@@ -29,9 +29,9 @@ export default function Home() {
       <HeroSection />
 
       {/* WAVE: Hero (#FFF9EC) → Why (white) */}
-      <div style={waveWrapper(HERO_BG)}>
-        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill={WHITE} />
+      <div style={{ background: '#FFF9EC', lineHeight: 0, display: 'block', margin: 0, padding: 0 }}>
+        <svg viewBox="0 0 1440 80" width="100%" height="80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF" />
         </svg>
       </div>
 
@@ -65,9 +65,9 @@ export default function Home() {
       <Testimonials />
 
       {/* WAVE: Testimonials (white) → Benefits (cream #FFFBF0) */}
-      <div style={waveWrapper(WHITE)}>
-        <svg width="100%" viewBox="0 0 1440 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,10 C360,50 720,0 1080,30 C1260,45 1380,15 1440,20 L1440,55 L0,55 Z" fill={CREAM} />
+      <div style={{ background: '#FFFFFF', lineHeight: 0, display: 'block', margin: 0, padding: 0 }}>
+        <svg viewBox="0 0 1440 80" width="100%" height="80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="#FFFBF0" />
         </svg>
       </div>
 
