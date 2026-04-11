@@ -212,6 +212,33 @@ nav.mclc-nav {
 .wcard h3 { font-size: 17px; font-weight: 500; margin-bottom: 7px; }
 .wcard p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
+/* PROGRAM CARD ICON ANIMATIONS */
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+@keyframes icon-sway {
+  0%, 100% { transform: rotate(-6deg) translateX(-3px); }
+  50% { transform: rotate(6deg) translateX(3px); }
+}
+@keyframes icon-glow {
+  0%, 100% { opacity: 0.75; filter: drop-shadow(0 0 0px rgba(122,46,0,0)); }
+  50% { opacity: 1; filter: drop-shadow(0 4px 10px rgba(122,46,0,0.35)); }
+}
+.icon-pulse {
+  animation: icon-pulse 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+.icon-sway {
+  animation: icon-sway 3.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+  transform-origin: center bottom;
+}
+.icon-glow {
+  animation: icon-glow 3.6s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
 /* PROGRAMS */
 .programs { padding: 80px 5% 0; background: var(--cream); position: relative; overflow: hidden; }
 .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; padding-bottom: 80px; }

@@ -18,7 +18,7 @@ export default function Programs() {
                 <circle cx="50%" cy="15%" r="5" fill="#C07800" />
               </svg>
             </div>
-            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }}>
+            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }} className="icon-pulse">
               <rect x="29" y="4" width="6" height="20" rx="3" fill="#C07800" opacity="0.5" />
               <rect x="20" y="11" width="24" height="6" rx="3" fill="#C07800" opacity="0.5" />
               <circle cx="32" cy="40" r="14" fill="#C07800" opacity="0.3" />
@@ -47,7 +47,7 @@ export default function Programs() {
                 <circle cx="45%" cy="80%" r="4" fill="#0B7A45" />
               </svg>
             </div>
-            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }}>
+            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }} className="icon-sway">
               <circle cx="22" cy="28" r="12" fill="#0B7A45" opacity="0.3" />
               <path d="M10 52 Q10 38 22 38 Q34 38 34 52Z" fill="#0B7A45" opacity="0.3" />
               <circle cx="42" cy="28" r="12" fill="#0B7A45" opacity="0.5" />
@@ -77,7 +77,7 @@ export default function Programs() {
                 <circle cx="55%" cy="20%" r="6" fill="#7A2E00" />
               </svg>
             </div>
-            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }}>
+            <svg width="60" height="56" viewBox="0 0 64 60" fill="none" style={{ position: "relative", zIndex: 1 }} className="icon-glow">
               <path d="M10 44 L10 28 L32 14 L54 28 L54 44" stroke="#7A2E00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.5" />
               <rect x="24" y="32" width="16" height="18" rx="3" fill="#7A2E00" opacity="0.4" />
               <rect x="12" y="28" width="12" height="10" rx="2" fill="#7A2E00" opacity="0.3" />
