@@ -96,7 +96,7 @@ nav.mclc-nav {
 /* HERO */
 .hero {
   min-height: 100svh;
-  background: linear-gradient(160deg, #FFF9EC 0%, #FFF3D0 45%, #FFEACC 100%);
+  background: linear-gradient(160deg, #FFF9EC 0%, #FFF3D0 40%, #FFE8CC 70%, #FFFFFF 100%);
   display: flex; align-items: center; padding: 80px 5% 0;
   position: relative; overflow: hidden;
 }
