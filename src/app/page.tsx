@@ -21,8 +21,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
 
-      {/* WAVE: Hero (#FFF9EC) → Why (white) */}
-      <div className="wave-divider" style={{ background: HERO_BG, marginTop: "-2px", lineHeight: 0 }}>
+      {/* WAVE: Hero (cream #FFFBF0) → Why (white) */}
+      <div className="wave-divider" style={{ background: CREAM, marginTop: "-2px", lineHeight: 0 }}>
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill={WHITE} />
         </svg>
