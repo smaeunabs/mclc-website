@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 const CREAM = "#FFFBF0";
 const WHITE = "#FFFFFF";
 
-const waveWrapper = (bg: string): React.CSSProperties => ({
+const waveWrapper = (bg: string): import("react").CSSProperties => ({
   background: bg,
   display: "block",
   lineHeight: 0,
