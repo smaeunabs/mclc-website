@@ -233,7 +233,7 @@ nav.mclc-nav {
 .fck.g { background: var(--gold); } .fck.gr { background: var(--green); } .fck.or { background: var(--orange); }
 
 /* ABOUT */
-.about { padding: 80px 5%; background: #2D2A3E; color: white; position: relative; overflow: hidden; margin-top: -1px; border: none; }
+.about { padding: 80px 5%; background: #2D2A3E; color: white; position: relative; overflow: hidden; margin-top: -1px; margin-bottom: -2px; border: none; }
 .about-blob { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 65%); top: -100px; right: -100px; pointer-events: none; }
 .about-blob2 { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(48,200,122,0.05) 0%, transparent 65%); bottom: -60px; left: -60px; pointer-events: none; }
 .about-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
@@ -250,7 +250,7 @@ nav.mclc-nav {
 .vmf-card .verse { margin-top: 1rem; font-size: 13px; color: rgba(255,255,255,0.4); font-style: italic; }
 
 /* TESTIMONIALS */
-.invite { padding: 80px 5%; background: #FFF9EC; text-align: center; position: relative; overflow: hidden; margin-top: -1px; border: none; }
+.invite { padding: 80px 5%; background: #FFF9EC; text-align: center; position: relative; overflow: hidden; margin-top: -1px; margin-bottom: -2px; border: none; }
 .invite-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FFF9EC 0%, #FFF0D4 100%); pointer-events: none; }
 .invite h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; margin-bottom: 1rem; position: relative; z-index: 2; }
 .invite > p { font-size: 16px; color: var(--text-muted); line-height: 1.75; max-width: 580px; margin: 0 auto 2.5rem; position: relative; z-index: 2; }
