@@ -46,7 +46,7 @@ export default function Home() {
       <Programs />
 
       {/* WAVE: Programs (cream #FFFBF0) → About (charcoal #2D2A3E) */}
-      <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, marginBottom: "-2px" }}>
+      <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, border: "none", outline: "none", overflow: "hidden" }}>
         <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
           <path d="M0,20 C180,50 360,0 540,30 C720,60 900,10 1080,30 C1260,50 1380,15 1440,25 L1440,60 L0,60 Z" fill="#2D2A3E" />
         </svg>
