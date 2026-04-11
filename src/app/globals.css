@@ -212,32 +212,77 @@ nav.mclc-nav {
 .wcard h3 { font-size: 17px; font-weight: 500; margin-bottom: 7px; }
 .wcard p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
-/* PROGRAM CARD ICON ANIMATIONS */
-@keyframes icon-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+/* PROGRAM CARD ANIMATED SCENES */
+
+/* --- Nursery/K1: blocks drop in one by one, then fall away --- */
+@keyframes nursery-b1 {
+  0%, 8%   { opacity: 0; transform: translateY(-60px); }
+  16%, 87% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; transform: translateY(24px); }
 }
-@keyframes icon-sway {
-  0%, 100% { transform: rotate(-6deg) translateX(-3px); }
-  50% { transform: rotate(6deg) translateX(3px); }
+@keyframes nursery-b2 {
+  0%, 31%  { opacity: 0; transform: translateY(-60px); }
+  39%, 87% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; transform: translateY(24px); }
 }
-@keyframes icon-glow {
-  0%, 100% { opacity: 0.75; filter: drop-shadow(0 0 0px rgba(122,46,0,0)); }
-  50% { opacity: 1; filter: drop-shadow(0 4px 10px rgba(122,46,0,0.35)); }
+@keyframes nursery-b3 {
+  0%, 54%  { opacity: 0; transform: translateY(-60px); }
+  62%, 87% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; transform: translateY(24px); }
 }
-.icon-pulse {
-  animation: icon-pulse 2.8s ease-in-out infinite;
-  transform-origin: center;
+@keyframes nursery-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
 }
-.icon-sway {
-  animation: icon-sway 3.2s ease-in-out infinite;
-  animation-delay: 0.6s;
-  transform-origin: center bottom;
+.sc-nb1 { animation: nursery-b1 4s ease-in-out infinite; }
+.sc-nb2 { animation: nursery-b2 4s ease-in-out infinite; }
+.sc-nb3 { animation: nursery-b3 4s ease-in-out infinite; }
+.sc-nc  { animation: nursery-bob 2s ease-in-out infinite; }
+
+/* --- Playgroup: two figures run to center, share a heart, run back --- */
+@keyframes pg-run-left {
+  0%, 5%   { transform: translateX(0); }
+  40%, 60% { transform: translateX(108px); }
+  95%, 100%{ transform: translateX(0); }
 }
-.icon-glow {
-  animation: icon-glow 3.6s ease-in-out infinite;
-  animation-delay: 1.2s;
+@keyframes pg-run-right {
+  0%, 5%   { transform: translateX(0); }
+  40%, 60% { transform: translateX(-108px); }
+  95%, 100%{ transform: translateX(0); }
 }
+@keyframes pg-heart {
+  0%, 37%  { opacity: 0; transform: scale(0.1); }
+  47%, 57% { opacity: 1; transform: scale(1); }
+  67%, 100%{ opacity: 0; transform: scale(0.1); }
+}
+.sc-pg-l { animation: pg-run-left  3.4s ease-in-out infinite; }
+.sc-pg-r { animation: pg-run-right 3.4s ease-in-out infinite; animation-delay: 0.04s; }
+.sc-pg-h { animation: pg-heart     3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* --- Daycare: zzz letters float up and fade, blanket gently breathes --- */
+@keyframes dc-zzz1 {
+  0%, 100% { opacity: 0; transform: translate(0, 0)   scale(0.8); }
+  10%      { opacity: 1; }
+  82%      { opacity: 0; transform: translate(-6px, -28px) scale(1.05); }
+}
+@keyframes dc-zzz2 {
+  0%, 32%, 100% { opacity: 0; transform: translate(0, 0)   scale(0.7); }
+  42%           { opacity: 1; }
+  86%           { opacity: 0; transform: translate(-8px, -32px) scale(1.1); }
+}
+@keyframes dc-zzz3 {
+  0%, 60%, 100% { opacity: 0; transform: translate(0, 0)   scale(0.6); }
+  70%           { opacity: 1; }
+  93%           { opacity: 0; transform: translate(-10px,-36px) scale(1.15); }
+}
+@keyframes dc-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.07); }
+}
+.sc-z1      { animation: dc-zzz1    3.2s ease-in-out infinite; }
+.sc-z2      { animation: dc-zzz2    3.2s ease-in-out infinite; }
+.sc-z3      { animation: dc-zzz3    3.2s ease-in-out infinite; }
+.sc-breathe { animation: dc-breathe 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: top center; }
 
 /* PROGRAMS */
 .programs { padding: 80px 5% 0; background: var(--cream); position: relative; overflow: hidden; }
