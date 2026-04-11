@@ -9,16 +9,6 @@ import Enrollment from "@/components/Enrollment";
 import FaithBanner from "@/components/FaithBanner";
 import Footer from "@/components/Footer";
 
-const CREAM = "#FFFBF0";
-const WHITE = "#FFFFFF";
-
-const waveWrapper = (bg: string): import("react").CSSProperties => ({
-  background: bg,
-  display: "block",
-  lineHeight: 0,
-  margin: 0,
-  padding: 0,
-});
 
 export default function Home() {
   return (
@@ -26,58 +16,61 @@ export default function Home() {
       <Navbar />
       <HeroSection />
 
-      {/* WAVE: Hero → Why (closes any sub-pixel gap at hero bottom) */}
-      <div style={{ background: '#FFFFFF', lineHeight: 0, display: 'block', margin: 0, padding: 0, overflow: 'hidden', marginTop: '-2px' }}>
-        <svg viewBox="0 0 1440 60" width="100%" height="60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-          <path d="M0,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1380,15 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF" />
+      {/* WAVE: Hero (#FFFFFF) → Why (#FFFFFF) */}
+      <div style={{ background: "#FFFFFF", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="60" fill="#FFFFFF" />
+          <path d="M-2,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1380,15 1442,30 L1442,60 L-2,60 Z" fill="#FFFFFF" />
         </svg>
       </div>
 
       <WhyMCLC />
 
-      {/* WAVE: Why (white) → Programs (cream #FFFBF0) */}
-      <div style={waveWrapper(WHITE)}>
-        <svg width="100%" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,20 1440,35 L1440,70 L0,70 Z" fill={CREAM} />
+      {/* WAVE: Why (#FFFFFF) → Programs (#FFFBF0) */}
+      <div style={{ background: "#FFFFFF", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="70" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="70" fill="#FFFFFF" />
+          <path d="M-2,35 C360,70 720,0 1080,35 C1260,52 1380,20 1442,35 L1442,70 L-2,70 Z" fill="#FFFBF0" />
         </svg>
       </div>
 
       <Programs />
 
-      {/* WAVE: Programs (cream #FFFBF0) → About (charcoal #2D2A3E) */}
-      <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, border: "none", outline: "none", overflow: "hidden" }}>
-        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
-          <path d="M0,20 C180,50 360,0 540,30 C720,60 900,10 1080,30 C1260,50 1380,15 1440,25 L1440,60 L0,60 Z" fill="#2D2A3E" />
+      {/* WAVE: Programs (#FFFBF0) → About (#2D2A3E) */}
+      <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="60" fill="#FFFBF0" />
+          <path d="M-2,20 C180,50 360,0 540,30 C720,60 900,10 1080,30 C1260,50 1380,15 1442,25 L1442,60 L-2,60 Z" fill="#2D2A3E" />
         </svg>
       </div>
 
       <About />
 
       {/* WAVE: About (#2D2A3E) → Testimonials (#FFF9EC) */}
-      <div style={{ background: "#2D2A3E", lineHeight: 0, display: "block", margin: 0, padding: 0, border: "none", outline: "none", overflow: "hidden", marginTop: "-2px" }}>
+      <div style={{ background: "#2D2A3E", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
         <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
-          {/* solid navy background rect — prevents any transparent gap on the right */}
           <rect x="0" y="0" width="1440" height="60" fill="#2D2A3E" />
-          {/* path extends 2px past viewBox edges to avoid sub-pixel rendering gap */}
           <path d="M-2,40 C240,10 480,55 720,30 C960,5 1200,50 1442,25 L1442,60 L-2,60 Z" fill="#FFF9EC" />
         </svg>
       </div>
 
       <Testimonials />
 
-      {/* WAVE: Testimonials (#FFF9EC) → Benefits (cream #FFFBF0) */}
-      <div style={{ background: '#FFF9EC', lineHeight: 0, display: 'block', margin: 0, padding: 0, overflow: 'hidden', marginTop: '-2px' }}>
-        <svg viewBox="0 0 1440 80" width="100%" height="80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-          <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="#FFFBF0" />
+      {/* WAVE: Testimonials (#FFF9EC) → Benefits (#FFFBF0) */}
+      <div style={{ background: "#FFF9EC", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="80" fill="#FFF9EC" />
+          <path d="M-2,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1442,40 L1442,80 L-2,80 Z" fill="#FFFBF0" />
         </svg>
       </div>
 
       <Benefits />
 
-      {/* WAVE: Benefits (cream #FFFBF0) → Enrollment (white) */}
-      <div style={waveWrapper(CREAM)}>
-        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill={WHITE} />
+      {/* WAVE: Benefits (#FFFBF0) → Enrollment (#FFFFFF) */}
+      <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="60" fill="#FFFBF0" />
+          <path d="M-2,30 C240,60 480,0 720,30 C960,60 1200,0 1442,30 L1442,60 L-2,60 Z" fill="#FFFFFF" />
         </svg>
       </div>
 
