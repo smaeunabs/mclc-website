@@ -55,8 +55,11 @@ export default function Home() {
 
       {/* WAVE: About (#2D2A3E) → Testimonials (#FFF9EC) */}
       <div style={{ background: "#2D2A3E", lineHeight: 0, display: "block", margin: 0, padding: 0, border: "none", outline: "none", overflow: "hidden", marginTop: "-2px" }}>
-        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
-          <path d="M0,40 C240,10 480,55 720,30 C960,5 1200,50 1440,25 L1440,60 L0,60 Z" fill="#FFF9EC" />
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          {/* solid navy background rect — prevents any transparent gap on the right */}
+          <rect x="0" y="0" width="1440" height="60" fill="#2D2A3E" />
+          {/* path extends 2px past viewBox edges to avoid sub-pixel rendering gap */}
+          <path d="M-2,40 C240,10 480,55 720,30 C960,5 1200,50 1442,25 L1442,60 L-2,60 Z" fill="#FFF9EC" />
         </svg>
       </div>
 
