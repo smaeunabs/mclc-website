@@ -237,7 +237,7 @@ nav.mclc-nav {
 .vmf-card .verse { margin-top: 1rem; font-size: 13px; color: rgba(255,255,255,0.4); font-style: italic; }
 
 /* TESTIMONIALS */
-.invite { padding: 80px 5%; background: white; text-align: center; position: relative; overflow: hidden; }
+.invite { padding: 80px 5%; background: #FFF9EC; text-align: center; position: relative; overflow: hidden; margin-top: -1px; border: none; }
 .invite-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FFF9EC 0%, #FFF0D4 100%); pointer-events: none; }
 .invite h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; margin-bottom: 1rem; position: relative; z-index: 2; }
 .invite > p { font-size: 16px; color: var(--text-muted); line-height: 1.75; max-width: 580px; margin: 0 auto 2.5rem; position: relative; z-index: 2; }

@@ -54,10 +54,10 @@ export default function Home() {
 
       <About />
 
-      {/* WAVE: About (charcoal #2D2A3E) → Testimonials (white) */}
-      <div style={waveWrapper(CHARCOAL)}>
-        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,40 C240,10 480,55 720,30 C960,5 1200,50 1440,25 L1440,60 L0,60 Z" fill={WHITE} />
+      {/* WAVE: About (charcoal #2D2A3E) → Testimonials (#FFF9EC) */}
+      <div style={{ background: "#2D2A3E", lineHeight: 0, display: "block", margin: 0, padding: 0, border: "none", outline: "none", overflow: "hidden" }}>
+        <svg width="100%" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <path d="M0,40 C240,10 480,55 720,30 C960,5 1200,50 1440,25 L1440,60 L0,60 Z" fill="#FFF9EC" />
         </svg>
       </div>
 
