@@ -90,7 +90,7 @@ nav.mclc-nav {
 .mobile-menu a:hover { color: var(--gold); }
 
 /* WAVY DIVIDER */
-.wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
+.wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; margin: 0; padding: 0; }
 .wave-divider svg { display: block; width: 100%; }
 
 /* HERO */
