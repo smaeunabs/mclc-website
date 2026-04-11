@@ -29,8 +29,8 @@ export default function Home() {
 
       {/* WAVE: Hero (#FFF9EC) → Why (white) */}
       <div style={{ background: '#FFF9EC', lineHeight: 0, display: 'block', margin: 0, padding: 0 }}>
-        <svg viewBox="0 0 1440 80" width="100%" height="80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF" />
+        <svg viewBox="0 0 1440 60" width="100%" height="60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1380,15 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF" />
         </svg>
       </div>
 

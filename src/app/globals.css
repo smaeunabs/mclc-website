@@ -100,7 +100,7 @@ nav.mclc-nav {
   display: flex; align-items: center; padding: 80px 5% 0;
   position: relative; overflow: hidden;
 }
-.hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; padding-bottom: 60px; }
+.hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; padding-bottom: 30px; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -175,7 +175,7 @@ nav.mclc-nav {
 .fun-tag.gold { background: var(--gold-pale); color: var(--gold-deep); border: 2px solid var(--gold-light); }
 
 /* WHY */
-.why { padding: 80px 5% 60px; background: white; position: relative; overflow: hidden; }
+.why { padding: 40px 5% 60px; background: white; position: relative; overflow: hidden; }
 .why-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .wcard {
