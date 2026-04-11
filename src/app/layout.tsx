@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "Messiah Christian Learning Center (MCLC) in Talisay City, Cebu. A faith-based preschool offering Nursery/K1, Playgroup, and Daycare programs for ages 1–4.",
   keywords: "MCLC, Messiah Christian Learning Center, preschool Cebu, daycare Talisay, kindergarten Cebu, Christian school",
+  icons: { icon: '/mclc_logo.png', apple: '/mclc_logo.png' },
 };
 
 export default function RootLayout({

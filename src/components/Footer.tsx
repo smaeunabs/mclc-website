@@ -1,7 +1,10 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="mclc-footer">
       <div className="footer-blob" />
+      <Image src="/mclc_logo.png" alt="MCLC Logo" width={60} height={60} style={{ borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }} />
       <div className="flogo">Messiah Christian Learning Center</div>
       <div className="footer-dots">
         <div className="footer-dot" style={{ background: "var(--gold)" }} />

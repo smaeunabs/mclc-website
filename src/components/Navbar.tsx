@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Navbar() {
     <>
       <nav className="mclc-nav">
         <div className="nav-logo">
-          <div className="nav-logo-circle">M</div>
+          <Image src="/mclc_logo.png" alt="MCLC Logo" width={44} height={44} style={{ borderRadius: '50%', objectFit: 'cover' }} />
           <div>
             <div className="school-name">Messiah Christian Learning Center</div>
             <div className="school-abbr">MCLC · Talisay City, Cebu</div>
