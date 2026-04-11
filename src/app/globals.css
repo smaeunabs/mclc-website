@@ -152,6 +152,19 @@ nav.mclc-nav {
 .fcrd-num { font-size: 20px; font-weight: 600; color: var(--orange); }
 .fcrd-lbl { font-size: 10px; color: var(--text-muted); font-weight: 700; }
 
+/* white fade at hero bottom — covers any gradient colour leaking into the wave seam */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* fun scattered dots background */
 .dots-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; z-index: 1;

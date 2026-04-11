@@ -26,9 +26,9 @@ export default function Home() {
       <Navbar />
       <HeroSection />
 
-      {/* WAVE: Hero (white) → Why (white) */}
-      <div style={{ background: '#FFFFFF', lineHeight: 0, display: 'block', margin: 0, padding: 0 }}>
-        <svg viewBox="0 0 1440 60" width="100%" height="60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      {/* WAVE: Hero → Why (closes any sub-pixel gap at hero bottom) */}
+      <div style={{ background: '#FFFFFF', lineHeight: 0, display: 'block', margin: 0, padding: 0, overflow: 'hidden', marginTop: '-2px' }}>
+        <svg viewBox="0 0 1440 60" width="100%" height="60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
           <path d="M0,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1380,15 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF" />
         </svg>
       </div>
