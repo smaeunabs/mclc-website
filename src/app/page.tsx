@@ -11,7 +11,6 @@ import Footer from "@/components/Footer";
 
 const CREAM = "#FFFBF0";
 const WHITE = "#FFFFFF";
-const CHARCOAL = "#2D2A3E";
 
 const waveWrapper = (bg: string): React.CSSProperties => ({
   background: bg,
