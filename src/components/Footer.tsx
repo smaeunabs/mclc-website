@@ -4,7 +4,9 @@ export default function Footer() {
   return (
     <footer className="mclc-footer">
       <div className="footer-blob" />
-      <Image src="/mclc_logo.png" alt="MCLC Logo" width={60} height={60} style={{ borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }} />
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+        <Image src="/mclc_logo.png" alt="MCLC Logo" width={60} height={60} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+      </div>
       <div className="flogo">Messiah Christian Learning Center</div>
       <div className="footer-dots">
         <div className="footer-dot" style={{ background: "var(--gold)" }} />
