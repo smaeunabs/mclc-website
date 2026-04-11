@@ -23,7 +23,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual"; window.scrollTo(0, 0);' }} />
+        {children}
+      </body>
     </html>
   );
 }
