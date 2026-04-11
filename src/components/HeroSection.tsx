@@ -1,5 +1,7 @@
 "use client";
 
+import { Sparkles } from "lucide-react";
+
 export default function HeroSection() {
   return (
     <section className="hero" id="home">
@@ -49,7 +51,7 @@ export default function HeroSection() {
           <div className="hero-btns">
             <a href="#enrollment" className="btn-primary"
               onClick={e => { e.preventDefault(); document.getElementById("enrollment")?.scrollIntoView({ behavior: "smooth" }); }}>
-              Reserve Your Child&apos;s Spot ✦
+              Reserve Your Child&apos;s Spot <Sparkles size={14} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
             </a>
             <a href="#programs" className="btn-outline"
               onClick={e => { e.preventDefault(); document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" }); }}>

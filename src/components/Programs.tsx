@@ -1,9 +1,11 @@
+import { Star } from "lucide-react";
+
 export default function Programs() {
   return (
     <section className="programs" id="programs">
       <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 2 }}>
         <div className="shape shape3" style={{ width: "70px", height: "70px", background: "var(--orange-light)", top: "5%", right: 0, opacity: 0.6, borderRadius: "30% 70% 70% 30%" }} />
-        <span className="fun-tag green">🌟 Our Programs</span>
+        <span className="fun-tag green"><Star size={13} />Our Programs</span>
         <h2 className="stitle">A Perfect Fit for Every Little One</h2>
         <p className="ssub">Whether your child is just starting out or ready for more structured learning, we have a program made just for them.</p>
       </div>

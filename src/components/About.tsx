@@ -1,3 +1,5 @@
+import { PenLine } from "lucide-react";
+
 export default function About() {
   return (
     <section className="about" id="about">
@@ -6,7 +8,7 @@ export default function About() {
       <div className="about-inner">
         <div className="about-top">
           <div>
-            <span className="fun-tag gold">✏️ About MCLC</span>
+            <span className="fun-tag gold"><PenLine size={13} />About MCLC</span>
             <h2>
               Built on <span className="ahl">Faith</span>,<br />
               Driven by Love,<br />

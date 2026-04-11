@@ -28,7 +28,7 @@ export default function Navbar() {
           <li><a href="#about" onClick={e => { e.preventDefault(); scrollTo("about"); }}>About</a></li>
           <li><a href="#enrollment" onClick={e => { e.preventDefault(); scrollTo("enrollment"); }}>Enroll</a></li>
         </ul>
-        <button className="nav-cta" onClick={() => scrollTo("enrollment")}>Enroll Now ✦</button>
+        <button className="nav-cta" onClick={() => scrollTo("enrollment")}>Enroll Now</button>
         <button className="hamburger" onClick={() => setOpen(!open)} aria-label="Menu">
           <span />
           <span />

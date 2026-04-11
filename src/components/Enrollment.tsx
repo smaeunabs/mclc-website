@@ -1,9 +1,11 @@
+import { Rocket } from "lucide-react";
+
 export default function Enrollment() {
   return (
     <section className="enrollment" id="enrollment">
       <div className="shape shape2" style={{ width: "80px", height: "80px", background: "var(--purple-light)", top: "12%", left: "1%", opacity: 0.5, borderRadius: "60% 40% 50% 50%" }} />
       <div className="ewrap">
-        <span className="fun-tag purple">🚀 How to Enroll</span>
+        <span className="fun-tag purple"><Rocket size={13} />How to Enroll</span>
         <h2 className="stitle">Ready to Get Started?</h2>
         <p className="ssub" style={{ marginBottom: "2.5rem" }}>
           Enrolling is easy! Follow these 5 simple steps and your child&apos;s bright future begins.
@@ -48,7 +50,7 @@ export default function Enrollment() {
           </div>
 
           <div className="ccard">
-            <h3>Come Visit Us! 😃</h3>
+            <h3>Come Visit Us!</h3>
             <div className="citem">
               <div className="cion">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B07D00" strokeWidth="2" strokeLinecap="round">

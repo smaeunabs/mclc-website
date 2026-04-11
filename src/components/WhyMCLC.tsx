@@ -1,10 +1,12 @@
+import { Sparkles } from "lucide-react";
+
 export default function WhyMCLC() {
   return (
     <section className="why" id="why">
       <div className="shape" style={{ width: "80px", height: "80px", background: "var(--gold-light)", top: "10%", left: "-20px", opacity: 0.5 }} />
       <div className="shape shape2" style={{ width: "60px", height: "60px", background: "var(--green-light)", bottom: "10%", right: "-15px", opacity: 0.5 }} />
       <div className="why-inner">
-        <span className="fun-tag orange">✨ Why Choose MCLC?</span>
+        <span className="fun-tag orange"><Sparkles size={13} />Why Choose MCLC?</span>
         <h2 className="stitle">Everything Your Child Deserves</h2>
         <p className="ssub">We created a place where every child feels seen, loved, and excited to come to school every single day.</p>
         <div className="why-grid">
