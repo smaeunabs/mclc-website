@@ -15,13 +15,13 @@ export default function Navbar() {
   return (
     <>
       <nav className="mclc-nav">
-        <div className="nav-logo">
+        <a className="nav-logo" href="/">
           <Image src="/mclc_logo.png" alt="Messiah Christian Learning Center (MCLC) — Preschool in Talisay City, Cebu" width={44} height={44} style={{ borderRadius: '50%', objectFit: 'cover' }} />
           <div>
             <div className="school-name">Messiah Christian Learning Center</div>
             <div className="school-abbr">MCLC · Talisay City, Cebu</div>
           </div>
-        </div>
+        </a>
         <ul className="nav-links">
           <li><a href="#why" onClick={e => { e.preventDefault(); scrollTo("why"); }}>Why MCLC</a></li>
           <li><a href="#programs" onClick={e => { e.preventDefault(); scrollTo("programs"); }}>Programs</a></li>

@@ -57,7 +57,7 @@ nav.mclc-nav {
   border-bottom: 3px solid #FFE49A; padding: 0 1.5rem;
   display: flex; align-items: center; justify-content: space-between; height: 64px;
 }
-.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
 .nav-logo-circle {
   width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
   background: linear-gradient(135deg, var(--gold), var(--orange));
