@@ -7,7 +7,13 @@ export const metadata: Metadata = {
     "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Kinder 1 programs.",
   keywords:
     "preschool in Talisay Cebu, preschool in Minglanilla Cebu, Christian school Talisay Cebu, Christian preschool Cebu, Southscape Talisay school, nursery school Talisay, kinder school Talisay Cebu, playgroup Talisay Cebu, early childhood education Talisay, best preschool south Cebu, MCLC Talisay, Messiah Christian Learning Center",
-  icons: { icon: "/mclc_logo.png", apple: "/mclc_logo.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+  },
   alternates: {
     canonical: "https://www.mclc-cebu.com",
   },
