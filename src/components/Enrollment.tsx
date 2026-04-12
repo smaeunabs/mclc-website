@@ -97,7 +97,7 @@ export default function Enrollment() {
               </div>
               <div>
                 <div className="clbl">Inquire Onsite</div>
-                <div className="cval">Focuslab front desk, Unit No. B1-2-7, just across MCLC school</div>
+                <div className="cval">Focuslab front desk officer — Unit No. B1-2-7, just across MCLC school</div>
               </div>
             </div>
             <div className="cta-box">

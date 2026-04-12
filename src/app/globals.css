@@ -391,7 +391,7 @@ nav.mclc-nav {
 }
 .bitem-sub { font-size: 11px; font-weight: 500; color: #888; margin-top: 1px; }
 .bcat { grid-column: 1 / -1; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #B07D00; padding: 0.5rem 0 0.25rem; border-bottom: 1px solid #EDE8D8; margin-bottom: 0.25rem; }
-.bitem:hover { border-color: var(--gold); transform: translateY(-3px) rotate(-0.5deg); }
+.bitem:hover { border-color: var(--cat-color, var(--gold)); transform: translateY(-3px) rotate(-0.5deg); }
 .bchk {
   width: 24px; height: 24px; border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), var(--orange));
