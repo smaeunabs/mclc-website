@@ -97,11 +97,29 @@ export default function Enrollment() {
               </div>
               <div>
                 <div className="clbl">Inquire Onsite</div>
-                <div className="cval">Focuslab front desk — Unit No. B1-2-7, just across MCLC school</div>
+                <div className="cval">Focuslab front desk, Unit No. B1-2-7, just across MCLC school</div>
               </div>
             </div>
             <div className="cta-box">
               <p>We&apos;d love to hear from you!<br />Reach out anytime. We&apos;re happy to answer all your questions.</p>
+            </div>
+            <div className="disclaimer-box">
+              <div className="disclaimer-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: "1px" }}>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Official Website Notice
+              </div>
+              <p className="disclaimer-body">
+                This is the only official website of Messiah Christian Learning Center (MCLC). All contact details,
+                enrollment information, and announcements published here are verified and authorized by MCLC administration.
+              </p>
+              <p className="disclaimer-body" style={{ marginTop: "8px" }}>
+                If you encounter any other website, social media account, or communication claiming to represent MCLC
+                that you do not recognize, please report it to us immediately at{" "}
+                <a href="mailto:support@mclc-cebu.com">support@mclc-cebu.com</a> or call{" "}
+                <a href="tel:+639898018408">(+63) 898-018-4081</a>.
+              </p>
             </div>
           </div>
         </div>
