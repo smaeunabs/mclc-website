@@ -24,6 +24,11 @@ export default function Footer() {
         &nbsp;&middot;&nbsp;
         <a href="tel:0323434775">(032) 343-4775</a>
       </p>
+      <div style={{ marginTop: "18px" }}>
+        <a href="/enroll" className="btn-primary" style={{ fontSize: "15px", padding: "12px 32px" }}>
+          Enroll Now
+        </a>
+      </div>
       <p style={{ marginTop: "14px", fontSize: "12px", opacity: 0.5 }}>
         &copy; 2025 Messiah Christian Learning Center (MCLC) &middot; Independent Christian Learning Institution &middot; All rights reserved.
       </p>

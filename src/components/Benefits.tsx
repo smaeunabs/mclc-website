@@ -78,6 +78,10 @@ export default function Benefits() {
               ))}
             </>
           ))}
+        <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+          <a href="/enroll" className="btn-primary" style={{ fontSize: "17px", padding: "16px 40px" }}>
+            Enroll Today
+          </a>
         </div>
       </div>
     </section>

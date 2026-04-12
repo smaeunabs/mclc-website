@@ -106,6 +106,26 @@ export default function About() {
             </p>
             <p className="verse">Based on Matthew 22:37&ndash;39 &amp; John 3:16</p>
           </div>
+        <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+          <a
+            href="/enroll"
+            style={{
+              display: "inline-block",
+              fontSize: "17px",
+              padding: "16px 40px",
+              background: "rgba(255,255,255,0.12)",
+              color: "#fff",
+              border: "2px solid rgba(245,166,35,0.6)",
+              borderRadius: "50px",
+              fontFamily: "'Fredoka', cursive",
+              fontWeight: 600,
+              letterSpacing: "0.02em",
+              textDecoration: "none",
+              transition: "background 0.2s, border-color 0.2s",
+            }}
+          >
+            Join Our Community
+          </a>
         </div>
       </div>
     </section>

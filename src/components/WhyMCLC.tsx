@@ -75,6 +75,11 @@ export default function WhyMCLC() {
             <p>From field trips to family days to honor roll treats, we make sure your little one wakes up excited every single morning!</p>
           </div>
         </div>
+        <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+          <a href="/enroll" className="btn-primary" style={{ fontSize: "17px", padding: "16px 40px" }}>
+            Start Your Child&apos;s Journey
+          </a>
+        </div>
       </div>
     </section>
   );
