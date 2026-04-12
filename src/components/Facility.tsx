@@ -33,7 +33,7 @@ const photos = [
   {
     src: "/images/reading-corner.jpg",
     alt: "Reading corner with alphabet charts and books at MCLC",
-    caption: "A cozy reading corner stocked with alphabet charts and early readers",
+    caption: "A dedicated learning space where little minds do big things",
   },
 ];
 
