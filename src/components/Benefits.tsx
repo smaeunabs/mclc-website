@@ -1,3 +1,4 @@
+import React from "react";
 import { Gift } from "lucide-react";
 
 type BenefitItem = { label: string; subtitle?: string };
@@ -78,6 +79,7 @@ export default function Benefits() {
               ))}
             </>
           ))}
+        </div>
         <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
           <a href="/enroll" className="btn-primary" style={{ fontSize: "17px", padding: "16px 40px" }}>
             Enroll Today

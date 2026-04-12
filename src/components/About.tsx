@@ -1,3 +1,4 @@
+import React from "react";
 import { PenLine } from "lucide-react";
 
 export default function About() {
@@ -106,6 +107,7 @@ export default function About() {
             </p>
             <p className="verse">Based on Matthew 22:37&ndash;39 &amp; John 3:16</p>
           </div>
+        </div>
         <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
           <a
             href="/enroll"
