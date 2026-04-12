@@ -21,6 +21,7 @@ import {
   Download,
   Mail,
   X,
+  ClipboardList,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -128,6 +129,7 @@ const STEPS = [
   { label: "Child",   Icon: User },
   { label: "Parent",  Icon: Users },
   { label: "Payment", Icon: CreditCard },
+  { label: "Review",  Icon: ClipboardList },
 ];
 
 const STEP_TITLES = [
@@ -135,6 +137,7 @@ const STEP_TITLES = [
   "Child's Information",
   "Parent / Guardian",
   "Payment Method",
+  "Review Your Information",
 ];
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
@@ -351,7 +354,8 @@ export default function EnrollPage() {
       case 1: return form.program !== "";
       case 2: return !!(form.childFirstName && form.childLastName && form.childDOB && form.childSex);
       case 3: return !!(form.parentName && form.parentRelationship && form.parentContact && form.parentEmail && form.hearAboutUs);
-      case 4: return form.paymentMethod !== "" && consent;
+      case 4: return form.paymentMethod !== "";
+      case 5: return consent;
       default: return false;
     }
   };
@@ -690,36 +694,66 @@ export default function EnrollPage() {
 
                     {/* Payment option cards */}
                     <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.5rem" }}>
-                      {([
-                        {
-                          value: "gcash",
-                          label: "GCash",
-                          Icon: Smartphone,
-                          description: "Send payment to our GCash number. Payment details will be sent to your email after confirmation.",
-                          bg: "#EDE0FF", borderBase: "#C8AAFF", iconBg: "#C8AAFF", iconColor: "#5B2FBB",
-                        },
-                        {
-                          value: "in-person",
-                          label: "Pay at Focuslab",
-                          Icon: MapPin,
-                          description: "Visit Focuslab front desk officer, Unit No. B1-2-7, just across MCLC at Southscape, Talisay City.",
-                          bg: "#D8EEFF", borderBase: "#A8D8FF", iconBg: "#A8D8FF", iconColor: "#1A5FA0",
-                        },
-                      ] as const).map(({ value, label, Icon, description, bg, borderBase, iconBg, iconColor }) => {
-                        const selected = form.paymentMethod === value;
+
+                      {/* Option A — GCash */}
+                      {(() => {
+                        const selected = form.paymentMethod === "gcash";
                         return (
                           <button
-                            key={value}
                             type="button"
-                            onClick={() => update("paymentMethod", value)}
-                            style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderRadius: "18px", cursor: "pointer", textAlign: "left", background: selected ? bg : "white", border: `2px solid ${selected ? "#FF6B3D" : borderBase}`, boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", width: "100%" }}
+                            onClick={() => update("paymentMethod", "gcash")}
+                            style={{ display: "flex", flexDirection: "column", padding: "1.25rem 1.5rem", borderRadius: "18px", cursor: "pointer", textAlign: "left", background: selected ? "#EDE0FF" : "white", border: `2px solid ${selected ? "#FF6B3D" : "#C8AAFF"}`, boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", width: "100%", gap: "1rem" }}
                           >
-                            <div style={{ width: "50px", height: "50px", borderRadius: "14px", background: selected ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: selected ? "0 4px 12px rgba(245,166,35,0.3)" : "none", transition: "all 0.2s" }}>
-                              <Icon size={22} color={selected ? "white" : iconColor} />
+                            {/* Header row */}
+                            <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
+                              <div style={{ width: "50px", height: "50px", borderRadius: "14px", background: selected ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : "#C8AAFF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: selected ? "0 4px 12px rgba(245,166,35,0.3)" : "none", transition: "all 0.2s" }}>
+                                <Smartphone size={22} color={selected ? "white" : "#5B2FBB"} />
+                              </div>
+                              <div style={{ flex: 1 }}>
+                                <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "18px", color: "#2D2A3E", marginBottom: "4px" }}>GCash</div>
+                                <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>Send payment to our GCash number. Payment details will be sent to your email after confirmation.</div>
+                              </div>
+                              {selected && (
+                                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "linear-gradient(135deg, #F5A623, #FF6B3D)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
+                                  <CheckCircle size={14} color="white" />
+                                </div>
+                              )}
+                            </div>
+                            {/* QR code */}
+                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", paddingTop: "0.25rem", borderTop: "1px dashed #C8AAFF" }}>
+                              <img
+                                src="/gcash-qr.png"
+                                alt="GCash QR code for MCLC enrollment payment"
+                                width={160}
+                                height={160}
+                                style={{ borderRadius: "12px", border: "2px solid #C8AAFF", objectFit: "contain", background: "white", padding: "6px" }}
+                              />
+                              <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "17px", color: "#5B2FBB", letterSpacing: "0.02em" }}>
+                                0898-018-4081
+                              </div>
+                              <div style={{ fontSize: "11px", fontWeight: 700, color: "#7B7490", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+                                Scan to Pay via GCash
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })()}
+
+                      {/* Option B — Pay at Focuslab */}
+                      {(() => {
+                        const selected = form.paymentMethod === "in-person";
+                        return (
+                          <button
+                            type="button"
+                            onClick={() => update("paymentMethod", "in-person")}
+                            style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderRadius: "18px", cursor: "pointer", textAlign: "left", background: selected ? "#D8EEFF" : "white", border: `2px solid ${selected ? "#FF6B3D" : "#A8D8FF"}`, boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", width: "100%" }}
+                          >
+                            <div style={{ width: "50px", height: "50px", borderRadius: "14px", background: selected ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : "#A8D8FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: selected ? "0 4px 12px rgba(245,166,35,0.3)" : "none", transition: "all 0.2s" }}>
+                              <MapPin size={22} color={selected ? "white" : "#1A5FA0"} />
                             </div>
                             <div style={{ flex: 1 }}>
-                              <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "18px", color: "#2D2A3E", marginBottom: "4px" }}>{label}</div>
-                              <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>{description}</div>
+                              <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "18px", color: "#2D2A3E", marginBottom: "4px" }}>Pay at Focuslab</div>
+                              <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>Visit Focuslab front desk officer, Unit No. B1-2-7, just across MCLC at Southscape, Talisay City.</div>
                             </div>
                             {selected && (
                               <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "linear-gradient(135deg, #F5A623, #FF6B3D)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
@@ -728,30 +762,114 @@ export default function EnrollPage() {
                             )}
                           </button>
                         );
-                      })}
+                      })()}
+
                     </div>
 
-                    {/* Consent checkbox */}
-                    <label style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "1.25rem", borderRadius: "14px", background: "#FFF9EC", border: "2px solid #FFE49A", cursor: "pointer", marginBottom: "1.25rem" }}>
-                      <input
-                        type="checkbox"
-                        checked={consent}
-                        onChange={(e) => setConsent(e.target.checked)}
-                        style={{ marginTop: "3px", width: "18px", height: "18px", accentColor: "#FF6B3D", flexShrink: 0, cursor: "pointer" }}
-                      />
-                      <span style={{ fontSize: "14px", color: "#2D2A3E", lineHeight: 1.65, fontWeight: 600 }}>
-                        I confirm the details above are correct and I agree to be contacted by MCLC regarding this enrollment inquiry.
-                      </span>
-                    </label>
-
-                    {/* Formspree error */}
-                    {hasFormErrors && (
-                      <div style={{ padding: "1rem", borderRadius: "12px", background: "#FFF0EE", border: "2px solid #FFBCB0", color: "#B83220", fontSize: "14px", fontWeight: 600, marginBottom: "1rem" }}>
-                        Something went wrong. Please check your details and try again.
-                      </div>
-                    )}
                   </div>
                 )}
+
+                {/* ── STEP 5: Review & Confirm ── */}
+                {currentStep === 5 && (() => {
+                  const fees = form.program && form.program in TUITION ? TUITION[form.program as keyof typeof TUITION] : null;
+                  return (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+
+                      {/* Child's Information */}
+                      <div style={{ borderRadius: "16px", border: "2px solid #EDE8D8", overflow: "hidden" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", borderBottom: "2px solid #EDE8D8" }}>
+                          <span style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "15px", color: "#2D2A3E" }}>Child&apos;s Information</span>
+                          <button type="button" onClick={() => setCurrentStep(2)} style={{ fontSize: "12px", fontWeight: 700, color: "#F5A623", background: "none", border: "none", cursor: "pointer", padding: "2px 6px", borderRadius: "6px" }}>Edit</button>
+                        </div>
+                        <div style={{ padding: "4px 0" }}>
+                          {[
+                            { label: "Full Name",      value: [form.childFirstName, form.childMiddleName, form.childLastName].filter(Boolean).join(" ") },
+                            { label: "Date of Birth",  value: form.childDOB },
+                            { label: "Sex",            value: form.childSex === "male" ? "Male" : "Female" },
+                          ].map(({ label, value }) => (
+                            <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                              <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>{label}</span>
+                              <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Parent / Guardian */}
+                      <div style={{ borderRadius: "16px", border: "2px solid #EDE8D8", overflow: "hidden" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", borderBottom: "2px solid #EDE8D8" }}>
+                          <span style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "15px", color: "#2D2A3E" }}>Parent / Guardian</span>
+                          <button type="button" onClick={() => setCurrentStep(3)} style={{ fontSize: "12px", fontWeight: 700, color: "#F5A623", background: "none", border: "none", cursor: "pointer", padding: "2px 6px", borderRadius: "6px" }}>Edit</button>
+                        </div>
+                        <div style={{ padding: "4px 0" }}>
+                          {[
+                            { label: "Full Name",     value: form.parentName },
+                            { label: "Relationship",  value: RELATIONSHIP_LABELS[form.parentRelationship] ?? form.parentRelationship },
+                            { label: "Contact",       value: form.parentContact },
+                            { label: "Email",         value: form.parentEmail },
+                            { label: "Heard About",   value: HEAR_ABOUT_LABELS[form.hearAboutUs] ?? form.hearAboutUs },
+                            ...(form.additionalNotes ? [{ label: "Notes", value: form.additionalNotes }] : []),
+                          ].map(({ label, value }) => (
+                            <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                              <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>{label}</span>
+                              <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right", wordBreak: "break-word", maxWidth: "60%" }}>{value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Payment Method */}
+                      <div style={{ borderRadius: "16px", border: "2px solid #EDE8D8", overflow: "hidden" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 16px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", borderBottom: "2px solid #EDE8D8" }}>
+                          <span style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "15px", color: "#2D2A3E" }}>Payment Method</span>
+                          <button type="button" onClick={() => setCurrentStep(4)} style={{ fontSize: "12px", fontWeight: 700, color: "#F5A623", background: "none", border: "none", cursor: "pointer", padding: "2px 6px", borderRadius: "6px" }}>Edit</button>
+                        </div>
+                        <div style={{ padding: "4px 0" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Method</span>
+                            <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{PAYMENT_LABELS[form.paymentMethod] ?? form.paymentMethod}</span>
+                          </div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Program</span>
+                            <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{PROGRAM_LABELS[form.program] ?? form.program}</span>
+                          </div>
+                          {fees && (
+                            <>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                                <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Due (with uniform)</span>
+                                <span style={{ fontSize: "13px", color: "#F5A623", fontWeight: 700, textAlign: "right" }}>{fees.enrollWithUniform}</span>
+                              </div>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem" }}>
+                                <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Due (without uniform)</span>
+                                <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{fees.enrollWithoutUniform}</span>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Consent checkbox */}
+                      <label style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "1.25rem", borderRadius: "14px", background: "#FFF9EC", border: "2px solid #FFE49A", cursor: "pointer" }}>
+                        <input
+                          type="checkbox"
+                          checked={consent}
+                          onChange={(e) => setConsent(e.target.checked)}
+                          style={{ marginTop: "3px", width: "18px", height: "18px", accentColor: "#FF6B3D", flexShrink: 0, cursor: "pointer" }}
+                        />
+                        <span style={{ fontSize: "14px", color: "#2D2A3E", lineHeight: 1.65, fontWeight: 600 }}>
+                          I confirm the details above are correct and I agree to be contacted by MCLC regarding this enrollment inquiry.
+                        </span>
+                      </label>
+
+                      {/* Formspree error */}
+                      {hasFormErrors && (
+                        <div style={{ padding: "1rem", borderRadius: "12px", background: "#FFF0EE", border: "2px solid #FFBCB0", color: "#B83220", fontSize: "14px", fontWeight: 600 }}>
+                          Something went wrong. Please check your details and try again.
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {/* ── NAV BUTTONS ── */}
                 <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", justifyContent: currentStep === 1 ? "flex-end" : "space-between" }}>
