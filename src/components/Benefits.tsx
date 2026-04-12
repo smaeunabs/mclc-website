@@ -24,6 +24,7 @@ const groups: BenefitGroup[] = [
       { label: "MCLC Exclusive Powder Room" },
       { label: "MCLC Lounge Cafeteria" },
       { label: "MCLC Adonai Music Room" },
+      { label: "MCLC School Clinic" },
     ],
   },
   {
