@@ -89,6 +89,17 @@ export default function Enrollment() {
                 <div className="cval"><a href="mailto:support@mclc-cebu.com">support@mclc-cebu.com</a></div>
               </div>
             </div>
+            <div className="citem">
+              <div className="cion">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B07D00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" />
+                </svg>
+              </div>
+              <div>
+                <div className="clbl">Inquire Onsite</div>
+                <div className="cval">Focuslab front desk — Unit No. B1-2-7, just across MCLC school</div>
+              </div>
+            </div>
             <div className="cta-box">
               <p>We&apos;d love to hear from you!<br />Reach out anytime. We&apos;re happy to answer all your questions.</p>
             </div>
