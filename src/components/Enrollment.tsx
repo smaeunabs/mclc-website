@@ -1,4 +1,5 @@
-import { Rocket } from "lucide-react";
+import { Rocket, MapPin } from "lucide-react";
+import Image from "next/image";
 
 export default function Enrollment() {
   return (
@@ -39,6 +40,21 @@ export default function Enrollment() {
                 <h4>Pay &amp; secure your spot!</h4>
                 <p>Complete enrollment and your child is officially part of the MCLC family. Welcome home! We can&apos;t wait to meet them!</p>
               </div>
+            </div>
+
+            <div className="loc-highlight">
+              <div className="loc-photos">
+                <Image src="/mclc_southscape_1.jpeg" alt="Southscape Commercial Building exterior" className="loc-photo" width={400} height={260} />
+                <Image src="/mclc_southscape_2.jpeg" alt="Southscape Commercial Building area" className="loc-photo" width={400} height={260} />
+              </div>
+              <h4 className="loc-heading">You&apos;re closer than you think.</h4>
+              <p className="loc-body">
+                Located on the 2nd floor of Southscape Commercial Building, just behind Mani Mogo restaurant, MCLC is right in the heart of Talisay City. Everything your family needs is within reach: restaurants, shops, pharmacies, and more, all just steps away.
+              </p>
+              <p className="loc-caption">
+                <MapPin size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: "4px", marginTop: "-1px" }} />
+                Southscape Commercial Bldg., 2nd Floor, Lawaan 1, Talisay City, Cebu
+              </p>
             </div>
           </div>
 

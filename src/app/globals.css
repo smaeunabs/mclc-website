@@ -100,7 +100,7 @@ nav.mclc-nav {
   display: flex; align-items: center; padding: 80px 5% 0;
   position: relative; overflow: hidden;
 }
-.hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; padding-bottom: 30px; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; padding-bottom: 30px; }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -138,21 +138,26 @@ nav.mclc-nav {
 }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold-deep); }
 
-.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
-.hero-card {
-  background: white; border-radius: 28px; padding: 1.5rem; width: 290px;
-  box-shadow: 0 24px 64px rgba(245,166,35,0.18), 0 4px 16px rgba(0,0,0,0.06);
-  position: relative; z-index: 2; border: 2px solid #FFE49A;
+.hero-visual { position: relative; display: flex; align-items: stretch; }
+.hero-photo {
+  width: 100%; min-height: 500px;
+  border-radius: 28px; overflow: hidden; position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.16);
 }
-.hero-img { width: 100%; height: 200px; border-radius: 18px; overflow: hidden; position: relative; margin-bottom: 1rem; }
-.hero-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-.hero-card p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-.hero-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--gold-pale); border: 1.5px solid var(--gold-light); border-radius: 50px; padding: 4px 12px; font-size: 11px; font-weight: 800; color: var(--gold-deep); margin-top: 10px; }
-.fcrd { position: absolute; background: white; border-radius: 16px; padding: 9px 14px; box-shadow: 0 8px 28px rgba(0,0,0,0.10); border: 1.5px solid #F0EBD8; z-index: 3; }
-.fcrd.top { top: -16px; left: -32px; }
-.fcrd.bot { bottom: -16px; right: -32px; }
-.fcrd-num { font-size: 20px; font-weight: 600; color: var(--orange); }
-.fcrd-lbl { font-size: 10px; color: var(--text-muted); font-weight: 700; }
+.hero-photo-badge {
+  position: absolute; bottom: 18px; left: 18px; z-index: 2;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+  border: 1.5px solid #F0EBD8; border-radius: 14px;
+  padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.hero-photo-badge-num {
+  font-family: 'Fredoka', cursive; font-size: 18px; font-weight: 600;
+  color: var(--orange); line-height: 1.1;
+}
+.hero-photo-badge-names {
+  font-size: 11px; font-weight: 800; color: var(--text-muted);
+  letter-spacing: 0.03em; margin-top: 2px;
+}
 
 /* white fade at hero bottom — covers any gradient colour leaking into the wave seam */
 .hero::after {
@@ -416,6 +421,12 @@ nav.mclc-nav {
 .step:hover .snum { transform: scale(1.12) rotate(-5deg); }
 .step h4 { font-family: 'Fredoka', cursive; font-size: 17px; font-weight: 500; margin-bottom: 3px; }
 .step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.loc-highlight { margin-top: 1.75rem; padding: 1.4rem; background: linear-gradient(135deg, #FFFDF7, #FFF9EC); border: 2px solid #EDE8D8; border-radius: 20px; }
+.loc-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.1rem; }
+.loc-photo { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; border: 1.5px solid #EDE8D8; display: block; }
+.loc-heading { font-family: 'Fredoka', cursive; font-size: 18px; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem; }
+.loc-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 0.75rem; }
+.loc-caption { font-size: 11px; color: #AAA; font-weight: 500; display: flex; align-items: center; gap: 2px; }
 .ccard { background: white; border: 2px solid #EDE8D8; border-radius: 28px; padding: 1.75rem; box-shadow: 0 8px 40px rgba(245,166,35,0.12); }
 .ccard h3 { font-size: 22px; font-weight: 500; margin-bottom: 1.4rem; }
 .citem { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 1rem; }
@@ -468,7 +479,7 @@ footer.mclc-footer a:hover { color: var(--gold); }
   .hamburger { display: flex; }
   .hero { padding: 80px 5% 0; }
   .hero-inner { grid-template-columns: 1fr; padding-bottom: 50px; }
-  .hero-visual { display: none; }
+  .hero-photo { min-height: 300px; border-radius: 20px; }
   .hero h1 { font-size: 2.3rem; }
   .hero-sub { font-size: 15px; }
   .hero-btns { flex-direction: column; }
