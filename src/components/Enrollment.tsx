@@ -8,40 +8,33 @@ export default function Enrollment() {
         <span className="fun-tag purple"><Rocket size={13} />How to Enroll</span>
         <h2 className="stitle">Ready to Get Started?</h2>
         <p className="ssub" style={{ marginBottom: "2.5rem" }}>
-          Enrolling is easy! Follow these 5 simple steps and your child&apos;s bright future begins.
+          Enrolling is easy! Follow these 4 simple steps and your child&apos;s bright future begins.
         </p>
         <div className="egrid">
           <div className="steps">
             <div className="step">
               <div className="snum">1</div>
               <div>
-                <h4>Book your child&apos;s diagnostic</h4>
-                <p>Email us or call +63 898-018-4081. It&apos;s free, friendly, and there&apos;s absolutely no pressure!</p>
+                <h4>Contact us to enroll</h4>
+                <p>Email us or call +63 898-018-4081. It&apos;s friendly and there&apos;s absolutely no pressure!</p>
               </div>
             </div>
             <div className="step">
               <div className="snum">2</div>
               <div>
-                <h4>Take the diagnostic exam</h4>
-                <p>Available online or at our campus in Talisay City. It helps us understand your child and place them in the best program.</p>
+                <h4>Meet with our team</h4>
+                <p>We&apos;ll walk you through the enrollment process and answer every question you have. No pressure, just genuine care for your child.</p>
               </div>
             </div>
             <div className="step">
               <div className="snum">3</div>
               <div>
-                <h4>Meet with our team</h4>
-                <p>We&apos;ll walk you through the results and answer every question you have. No pressure, just genuine care for your child.</p>
+                <h4>Submit requirements</h4>
+                <p>Bring or send a photocopy of your child&apos;s <strong>PSA Birth Certificate</strong> — online or onsite, whichever is more convenient for your family.</p>
               </div>
             </div>
             <div className="step">
               <div className="snum">4</div>
-              <div>
-                <h4>Submit requirements</h4>
-                <p>Online or onsite, whichever is more convenient for your family. We&apos;ll guide you every step of the way.</p>
-              </div>
-            </div>
-            <div className="step">
-              <div className="snum">5</div>
               <div>
                 <h4>Pay &amp; secure your spot!</h4>
                 <p>Complete enrollment and your child is officially part of the MCLC family. Welcome home! We can&apos;t wait to meet them!</p>
