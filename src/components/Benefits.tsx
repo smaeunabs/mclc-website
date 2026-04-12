@@ -8,6 +8,10 @@ const benefits: { label: string; subtitle?: string }[] = [
   { label: "Air-conditioned rooms" },
   { label: "Foundation Day / Family Day" },
   { label: "Professional Licensed Teacher", subtitle: "Childhood Specialist" },
+  { label: "Exclusive drop-off & pick-up area" },
+  { label: "Free parking space" },
+  { label: "Accessible & central location", subtitle: "Southscape, Talisay City" },
+  { label: "Near shops, food, & essential services" },
 ];
 
 export default function Benefits() {
