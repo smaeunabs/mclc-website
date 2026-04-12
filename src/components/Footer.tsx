@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="mclc-footer">
       <div className="footer-blob" />
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
-        <Image src="/mclc_logo.png" alt="MCLC Logo" width={60} height={60} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+        <Image src="/mclc_logo.png" alt="Messiah Christian Learning Center — Preschool in Southscape, Talisay City, Cebu" width={60} height={60} style={{ borderRadius: '50%', objectFit: 'cover' }} />
       </div>
       <div className="flogo">Messiah Christian Learning Center</div>
       <div className="footer-dots">
@@ -16,6 +16,7 @@ export default function Footer() {
         <div className="footer-dot" style={{ background: "var(--purple)" }} />
       </div>
       <p>Southscape Commercial Bldg., 2nd Floor Unit B1-2-5, Lawaan 1, Talisay City, Cebu 6045</p>
+      <p style={{ marginTop: "6px", fontSize: "13px", opacity: 0.65 }}>Serving families in Talisay, Minglanilla, and South Cebu</p>
       <p style={{ marginTop: "6px" }}>
         <a href="mailto:support@mclc-cebu.com">support@mclc-cebu.com</a>
         &nbsp;&middot;&nbsp;

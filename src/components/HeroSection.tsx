@@ -29,10 +29,12 @@ export default function HeroSection() {
             Where Little Hearts<br />
             <span className="hg">Grow Big</span> &amp;<br />
             <span className="ho">Shine Bright!</span>
+            <span className="sr-only"> — Christ-Centered Preschool in Talisay City, Cebu</span>
           </h1>
           <p className="hero-sub">
-            At MCLC, your child doesn&apos;t just learn. They discover, laugh, grow in faith,
-            and build a foundation that lasts a lifetime. Come join our family!
+            At MCLC in <strong>Southscape, Talisay City, Cebu</strong>, your child doesn&apos;t
+            just learn. They discover, laugh, grow in faith, and build a foundation that lasts a
+            lifetime. Come join our family!
           </p>
           <div className="trust-row">
             <div className="trust-item">
@@ -58,6 +60,9 @@ export default function HeroSection() {
               See Our Programs
             </a>
           </div>
+          <p className="hero-area">
+            Serving families in Talisay, Minglanilla, and South Cebu
+          </p>
         </div>
         <div className="hero-visual">
           <div className="fcrd top">

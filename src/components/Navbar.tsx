@@ -16,7 +16,7 @@ export default function Navbar() {
     <>
       <nav className="mclc-nav">
         <div className="nav-logo">
-          <Image src="/mclc_logo.png" alt="MCLC Logo" width={44} height={44} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+          <Image src="/mclc_logo.png" alt="Messiah Christian Learning Center (MCLC) — Preschool in Talisay City, Cebu" width={44} height={44} style={{ borderRadius: '50%', objectFit: 'cover' }} />
           <div>
             <div className="school-name">Messiah Christian Learning Center</div>
             <div className="school-abbr">MCLC · Talisay City, Cebu</div>

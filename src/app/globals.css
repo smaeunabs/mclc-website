@@ -121,6 +121,8 @@ nav.mclc-nav {
 .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--text-muted); }
 .tdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-area { margin-top: 1rem; font-size: 13px; color: var(--text-muted); font-weight: 600; opacity: 0.75; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .btn-primary {
   background: linear-gradient(135deg, var(--gold), var(--orange)); color: white;
   border: none; border-radius: 50px; padding: 14px 30px;
@@ -291,6 +293,23 @@ nav.mclc-nav {
 .fck { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; font-weight: 800; color: white; }
 .fck.g { background: var(--gold); } .fck.gr { background: var(--green); } .fck.or { background: var(--orange); }
 
+/* FACILITY */
+.facility { padding: 80px 5%; background: white; position: relative; overflow: hidden; }
+.facility-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+.facility-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.facility-photo {
+  border-radius: 20px; overflow: hidden;
+  border: 2px solid #EDE8D8; background: white;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.facility-photo:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.facility-img-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; }
+.facility-caption {
+  padding: 10px 14px; font-size: 13px; font-weight: 700;
+  color: var(--text-muted); background: white;
+}
+
 /* ABOUT */
 .about { padding: 80px 5%; background: #2D2A3E; color: white; position: relative; overflow: hidden; margin-top: -1px; margin-bottom: -2px; border: none; }
 .about-blob { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 65%); top: -100px; right: -100px; pointer-events: none; }
@@ -393,6 +412,7 @@ footer.mclc-footer a:hover { color: var(--gold); }
 @media (max-width: 900px) {
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .prog-grid { grid-template-columns: 1fr 1fr; }
+  .facility-grid { grid-template-columns: repeat(2, 1fr); }
   .vmf-grid { grid-template-columns: 1fr; }
   .about-top { grid-template-columns: 1fr; gap: 2rem; }
   .invite-grid { grid-template-columns: 1fr 1fr; }
@@ -409,7 +429,8 @@ footer.mclc-footer a:hover { color: var(--gold); }
   .hero-sub { font-size: 15px; }
   .hero-btns { flex-direction: column; }
   .btn-primary, .btn-outline { text-align: center; width: 100%; padding: 14px 20px; }
-  .why, .programs, .about, .invite, .benefits, .enrollment { padding: 60px 5%; }
+  .why, .programs, .about, .invite, .benefits, .enrollment, .facility { padding: 60px 5%; }
+  .facility-grid { grid-template-columns: 1fr; }
   .programs { padding-bottom: 0; }
   .why-grid, .prog-grid, .invite-grid { grid-template-columns: 1fr; }
   .bgrid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
