@@ -53,10 +53,10 @@ export default function Enrollment() {
               </div>
               <h4 className="loc-heading">You&apos;re closer than you think.</h4>
               <p className="loc-body">
-                Located on the 2nd floor of Southscape Commercial Building, just behind Mani Mogo restaurant, MCLC is right in the heart of Talisay City. And while your little one is learning and growing, you don&apos;t have to go far — Focuslab Coworking Space is just across from us, also inside Southscape. Work, focus, and stay close — all in one place.
+                Located on the 2nd floor of Southscape Commercial Building, just behind Mani Mogo restaurant, MCLC is right in the heart of Talisay City. And while your little one is learning and growing, you don&apos;t have to go far. Focuslab Coworking Space is just across from us, also inside Southscape. Work, focus, and stay close, all in one place.
               </p>
               <div className="loc-focuslab">
-                💼 Focuslab Coworking Space — just across from MCLC inside Southscape
+                💼 Focuslab Coworking Space, just across from MCLC inside Southscape
               </div>
               <p className="loc-caption">
                 <MapPin size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: "4px", marginTop: "-1px" }} />
