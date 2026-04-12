@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -295,11 +295,14 @@ function HeroBanner() {
 export default function EnrollPage() {
   const [state, handleFormspreeSubmit] = useForm("xzdypvrb");
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const [consent, setConsent]         = useState(false);
+  const [currentStep, setCurrentStep]     = useState(1);
+  const [consent, setConsent]             = useState(false);
   const [showDraftBanner, setShowDraftBanner] = useState(false);
-  const [savedDraft, setSavedDraft]   = useState<DraftState | null>(null);
-  const [form, setForm]               = useState<FormFields>(DEFAULT_FORM);
+  const [savedDraft, setSavedDraft]       = useState<DraftState | null>(null);
+  const [form, setForm]                   = useState<FormFields>(DEFAULT_FORM);
+  const [gcashReference, setGcashReference] = useState("");
+  const [gcashProofFile, setGcashProofFile] = useState<File | null>(null);
+  const gcashProofInputRef = useRef<HTMLInputElement>(null);
 
   const update = (field: keyof FormFields, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -538,6 +541,12 @@ export default function EnrollPage() {
             <input type="hidden" name="payment_method"      value={PAYMENT_LABELS[form.paymentMethod] ?? form.paymentMethod} />
             <input type="hidden" name="referral_source"     value={HEAR_ABOUT_LABELS[form.hearAboutUs] ?? form.hearAboutUs} />
             <input type="hidden" name="notes"               value={form.additionalNotes || "(none)"} />
+            {form.paymentMethod === "gcash" && (
+              <input type="hidden" name="gcash_reference"      value={gcashReference || "(not provided)"} />
+            )}
+            {form.paymentMethod === "gcash" && (
+              <input type="hidden" name="gcash_proof_uploaded" value={gcashProofFile ? "yes" : "no"} />
+            )}
 
             <div style={{ background: "white", borderRadius: "28px", border: "2px solid #EDE8D8", boxShadow: "0 8px 32px rgba(0,0,0,0.07)", overflow: "hidden" }}>
               {/* Card header */}
@@ -699,43 +708,100 @@ export default function EnrollPage() {
                       {(() => {
                         const selected = form.paymentMethod === "gcash";
                         return (
-                          <button
-                            type="button"
-                            onClick={() => update("paymentMethod", "gcash")}
-                            style={{ display: "flex", flexDirection: "column", padding: "1.25rem 1.5rem", borderRadius: "18px", cursor: "pointer", textAlign: "left", background: selected ? "#EDE0FF" : "white", border: `2px solid ${selected ? "#FF6B3D" : "#C8AAFF"}`, boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", width: "100%", gap: "1rem" }}
-                          >
-                            {/* Header row */}
-                            <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
+                          <div style={{ borderRadius: "18px", border: `2px solid ${selected ? "#FF6B3D" : "#C8AAFF"}`, background: selected ? "#EDE0FF" : "white", boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", overflow: "hidden" }}>
+                            {/* Clickable header row */}
+                            <button
+                              type="button"
+                              onClick={() => update("paymentMethod", "gcash")}
+                              style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", cursor: "pointer", textAlign: "left", background: "transparent", border: "none", width: "100%" }}
+                            >
                               <div style={{ width: "50px", height: "50px", borderRadius: "14px", background: selected ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : "#C8AAFF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: selected ? "0 4px 12px rgba(245,166,35,0.3)" : "none", transition: "all 0.2s" }}>
                                 <Smartphone size={22} color={selected ? "white" : "#5B2FBB"} />
                               </div>
-                              <div style={{ flex: 1 }}>
+                              <div style={{ flex: 1, textAlign: "left" }}>
                                 <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "18px", color: "#2D2A3E", marginBottom: "4px" }}>GCash</div>
-                                <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>Send payment to our GCash number. Payment details will be sent to your email after confirmation.</div>
+                                <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>Scan the QR code below to pay via GCash.</div>
                               </div>
                               {selected && (
                                 <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "linear-gradient(135deg, #F5A623, #FF6B3D)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
                                   <CheckCircle size={14} color="white" />
                                 </div>
                               )}
-                            </div>
-                            {/* QR code */}
-                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", paddingTop: "0.25rem", borderTop: "1px dashed #C8AAFF" }}>
-                              <img
-                                src="/gcash-qr.png"
-                                alt="GCash QR code for MCLC enrollment payment"
-                                width={160}
-                                height={160}
-                                style={{ borderRadius: "12px", border: "2px solid #C8AAFF", objectFit: "contain", background: "white", padding: "6px" }}
-                              />
-                              <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "17px", color: "#5B2FBB", letterSpacing: "0.02em" }}>
-                                0898-018-4081
+                            </button>
+
+                            {/* Expanded content — only when selected */}
+                            {selected && (
+                              <div style={{ padding: "0 1.5rem 1.5rem", display: "flex", flexDirection: "column", gap: "1.25rem", borderTop: "1px dashed #C8AAFF" }}>
+                                {/* QR code */}
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", paddingTop: "1.25rem" }}>
+                                  <img
+                                    src="/gcash-qr.png"
+                                    alt="GCash QR code for MCLC enrollment payment"
+                                    width={280}
+                                    height={280}
+                                    style={{ borderRadius: "14px", border: "2px solid #C8AAFF", objectFit: "contain", background: "white", padding: "8px", maxWidth: "100%" }}
+                                  />
+                                  <div style={{ fontSize: "11px", fontWeight: 700, color: "#7B7490", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+                                    Scan to Pay via GCash
+                                  </div>
+                                </div>
+
+                                {/* Reference number */}
+                                <div>
+                                  <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#2D2A3E", marginBottom: "0.5rem" }}>
+                                    GCash Reference Number{" "}
+                                    <span style={{ fontWeight: 400, color: "#B0A890" }}>(optional)</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={gcashReference}
+                                    onChange={(e) => setGcashReference(e.target.value)}
+                                    placeholder="Enter your GCash reference number after payment"
+                                    style={INPUT_STYLE}
+                                    onFocus={(e) => (e.currentTarget.style.borderColor = "#F5A623")}
+                                    onBlur={(e) => (e.currentTarget.style.borderColor = "#E0D8C0")}
+                                  />
+                                  <div style={{ fontSize: "12px", color: "#B0A890", marginTop: "6px" }}>
+                                    You can find the reference number in your GCash transaction history.
+                                  </div>
+                                </div>
+
+                                {/* Proof of payment upload */}
+                                <div>
+                                  <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#2D2A3E", marginBottom: "0.5rem" }}>
+                                    Upload GCash Screenshot{" "}
+                                    <span style={{ fontWeight: 400, color: "#B0A890" }}>(optional)</span>
+                                  </label>
+                                  <input
+                                    ref={gcashProofInputRef}
+                                    type="file"
+                                    accept="image/*"
+                                    style={{ display: "none" }}
+                                    onChange={(e) => setGcashProofFile(e.target.files?.[0] ?? null)}
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => gcashProofInputRef.current?.click()}
+                                    style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "10px 18px", borderRadius: "12px", cursor: "pointer", background: "white", border: "2px solid #C8AAFF", fontFamily: "'Nunito', sans-serif", fontSize: "14px", fontWeight: 700, color: "#5B2FBB", transition: "all 0.2s" }}
+                                    onMouseOver={(e) => { e.currentTarget.style.borderColor = "#F5A623"; e.currentTarget.style.color = "#C07800"; }}
+                                    onMouseOut={(e) => { e.currentTarget.style.borderColor = "#C8AAFF"; e.currentTarget.style.color = "#5B2FBB"; }}
+                                  >
+                                    {gcashProofFile ? "Change screenshot" : "Choose screenshot"}
+                                  </button>
+                                  {gcashProofFile ? (
+                                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", padding: "8px 12px", borderRadius: "10px", background: "#CFFAE7", border: "1.5px solid #A8F0CC", fontSize: "13px", color: "#0B7A45", fontWeight: 600 }}>
+                                      <CheckCircle size={14} />
+                                      {gcashProofFile.name}
+                                    </div>
+                                  ) : (
+                                    <div style={{ fontSize: "12px", color: "#B0A890", marginTop: "6px" }}>
+                                      Upload a screenshot of your payment confirmation.
+                                    </div>
+                                  )}
+                                </div>
                               </div>
-                              <div style={{ fontSize: "11px", fontWeight: 700, color: "#7B7490", textTransform: "uppercase", letterSpacing: "0.07em" }}>
-                                Scan to Pay via GCash
-                              </div>
-                            </div>
-                          </button>
+                            )}
+                          </div>
                         );
                       })()}
 
