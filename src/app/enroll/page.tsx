@@ -44,6 +44,7 @@ interface FormFields {
   parentEmail: string;
   parentAddress: string;
   paymentMethod: PaymentMethod;
+  gcashReferenceNo: string;
   hearAboutUs: string;
   additionalNotes: string;
 }
@@ -160,6 +161,7 @@ const DEFAULT_FORM: FormFields = {
   parentEmail: "",
   parentAddress: "",
   paymentMethod: "",
+  gcashReferenceNo: "",
   hearAboutUs: "",
   additionalNotes: "",
 };
@@ -312,7 +314,7 @@ function TuitionFeeCard({ program }: { program: Program }) {
           <span style={{ fontFamily: "'Fredoka', cursive", fontSize: "20px", color: "#2D2A3E", fontWeight: 500 }}>{fees.enrollWithoutUniform}</span>
         </div>
         <div style={{ marginTop: "10px", paddingTop: "10px", borderTop: "1px dashed #E0D8C0", fontSize: "12px", color: "#B0A890", fontStyle: "italic" }}>
-          Optional add-on: After-School Care at &#8369;500 per hour
+          After-School Care at &#8369;500 per hour
         </div>
       </div>
     </div>
@@ -391,6 +393,7 @@ export default function EnrollPage() {
   const [savedDraft, setSavedDraft]   = useState<DraftState | null>(null);
   const [psaFile, setPsaFile]         = useState<File | null>(null);
   const [proofFile, setProofFile]     = useState<File | null>(null);
+  const [showStep4Errors, setShowStep4Errors] = useState(false);
   const [form, setForm]               = useState<FormFields>(DEFAULT_FORM);
 
   const update = (field: keyof FormFields, value: string) =>
@@ -439,6 +442,8 @@ export default function EnrollPage() {
     setConsent(false);
     setShowDraftBanner(false);
     setSavedDraft(null);
+    setShowStep4Errors(false);
+    setProofFile(null);
   };
 
   const canContinue = (): boolean => {
@@ -446,7 +451,12 @@ export default function EnrollPage() {
       case 1: return form.program !== "";
       case 2: return !!(form.childFirstName && form.childLastName && form.childDOB && form.childSex);
       case 3: return !!(form.parentName && form.parentRelationship && form.parentContact && form.parentEmail);
-      case 4: return form.paymentMethod !== "";
+      case 4:
+        if (form.paymentMethod === "") return false;
+        if (form.paymentMethod === "gcash") {
+          return !!(proofFile && form.gcashReferenceNo);
+        }
+        return true;
       case 5: return form.hearAboutUs !== "";
       case 6: return consent;
       default: return false;
@@ -579,6 +589,9 @@ export default function EnrollPage() {
             <input type="hidden" name="parent_relationship" value={RELATIONSHIP_LABELS[form.parentRelationship] ?? form.parentRelationship} />
             <input type="hidden" name="parent_address"      value={form.parentAddress || "(not provided)"} />
             <input type="hidden" name="payment_method"      value={PAYMENT_LABELS[form.paymentMethod] ?? form.paymentMethod} />
+            {form.paymentMethod === "gcash" && (
+              <input type="hidden" name="gcash_reference_no" value={form.gcashReferenceNo} />
+            )}
             <input type="hidden" name="referral_source"     value={HEAR_ABOUT_LABELS[form.hearAboutUs] ?? form.hearAboutUs} />
             <input type="hidden" name="additional_notes"    value={form.additionalNotes || "(none)"} />
             <input type="hidden" name="psa_uploaded"        value={psaFile ? "yes" : "no"} />
@@ -733,7 +746,7 @@ export default function EnrollPage() {
                           <button
                             key={value}
                             type="button"
-                            onClick={() => update("paymentMethod", value)}
+                            onClick={() => { update("paymentMethod", value); setShowStep4Errors(false); }}
                             style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderRadius: "18px", cursor: "pointer", textAlign: "left", background: selected ? bg : "white", border: `2px solid ${selected ? "#FF6B3D" : borderBase}`, boxShadow: selected ? "0 4px 16px rgba(255,107,61,0.18)" : "none", transition: "all 0.2s", width: "100%" }}
                           >
                             <div style={{ width: "50px", height: "50px", borderRadius: "14px", background: selected ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: selected ? "0 4px 12px rgba(245,166,35,0.3)" : "none", transition: "all 0.2s" }}>
@@ -753,24 +766,63 @@ export default function EnrollPage() {
                       })}
                     </div>
 
-                    {/* Proof of payment upload — only for GCash */}
+                    {/* Proof of payment + reference number — only for GCash */}
                     {form.paymentMethod === "gcash" && (
-                      <div style={{ padding: "1.25rem", borderRadius: "16px", background: "#F8F4FF", border: "2px solid #C8AAFF", marginBottom: "1.25rem" }}>
-                        <FileUploadField
-                          label="Upload Proof of Payment (GCash screenshot)"
-                          accept="image/*,.pdf"
-                          file={proofFile}
-                          onFileChange={setProofFile}
-                          optional
-                          Icon={Upload}
-                        />
-                        {!proofFile && (
-                          <p style={{ marginTop: "10px", fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>
-                            Please upload your GCash screenshot. If you cannot upload now, send it to{" "}
-                            <a href="mailto:support@mclc-cebu.com" style={{ color: "#5B2FBB", fontWeight: 700 }}>support@mclc-cebu.com</a>{" "}
-                            after submitting.
-                          </p>
-                        )}
+                      <div style={{ padding: "1.25rem", borderRadius: "16px", background: "#F8F4FF", border: `2px solid ${showStep4Errors && (!proofFile || !form.gcashReferenceNo) ? "#FF6B3D" : "#C8AAFF"}`, marginBottom: "1.25rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+
+                        {/* GCash QR code */}
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+                          <img
+                            src="/gcash-qr.png"
+                            alt="GCash QR code for MCLC enrollment fee payment"
+                            width={200}
+                            height={200}
+                            style={{ borderRadius: "12px", border: "2px solid #C8AAFF", objectFit: "contain", background: "white", padding: "4px" }}
+                          />
+                          <span style={{ fontSize: "12px", fontWeight: 700, color: "#5B2FBB", letterSpacing: "0.02em" }}>
+                            Scan to pay via GCash
+                          </span>
+                        </div>
+
+                        {/* Proof of payment upload */}
+                        <div>
+                          <FileUploadField
+                            label="Upload Proof of Payment (GCash screenshot)"
+                            accept="image/*,.pdf"
+                            file={proofFile}
+                            onFileChange={(f) => { setProofFile(f); if (f) setShowStep4Errors(false); }}
+                            Icon={Upload}
+                          />
+                          {showStep4Errors && !proofFile && (
+                            <div style={{ marginTop: "6px", fontSize: "12px", color: "#FF6B3D", fontWeight: 700 }}>
+                              Please upload your proof of payment.
+                            </div>
+                          )}
+                        </div>
+
+                        {/* GCash reference number */}
+                        <div>
+                          <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#2D2A3E", marginBottom: "0.5rem" }}>
+                            Reference Number <span style={{ color: "#FF6B3D" }}>*</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={form.gcashReferenceNo}
+                            onChange={(e) => { update("gcashReferenceNo", e.target.value); if (e.target.value) setShowStep4Errors(false); }}
+                            placeholder="e.g. 1234567890"
+                            style={{
+                              ...INPUT_STYLE,
+                              borderColor: showStep4Errors && !form.gcashReferenceNo ? "#FF6B3D" : "#E0D8C0",
+                            }}
+                            onFocus={(e) => (e.currentTarget.style.borderColor = "#F5A623")}
+                            onBlur={(e) => (e.currentTarget.style.borderColor = showStep4Errors && !form.gcashReferenceNo ? "#FF6B3D" : "#E0D8C0")}
+                          />
+                          {showStep4Errors && !form.gcashReferenceNo && (
+                            <div style={{ marginTop: "6px", fontSize: "12px", color: "#FF6B3D", fontWeight: 700 }}>
+                              Please enter your GCash reference number.
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
 
@@ -848,7 +900,10 @@ export default function EnrollPage() {
                       <ReviewGroup title="Payment Method">
                         <ReviewRow label="Method" value={PAYMENT_LABELS[form.paymentMethod] ?? form.paymentMethod} />
                         {form.paymentMethod === "gcash" && (
-                          <ReviewRow label="Proof of Payment" value={proofFile ? proofFile.name : "Will email to support@mclc-cebu.com"} />
+                          <>
+                            <ReviewRow label="Reference No." value={form.gcashReferenceNo} />
+                            <ReviewRow label="Proof of Payment" value={proofFile ? proofFile.name : "Will email to support@mclc-cebu.com"} />
+                          </>
                         )}
                       </ReviewGroup>
 
@@ -897,8 +952,15 @@ export default function EnrollPage() {
                   {currentStep < 6 ? (
                     <button
                       type="button"
-                      onClick={() => setCurrentStep((s) => s + 1)}
-                      disabled={!canContinue()}
+                      onClick={() => {
+                        if (!canContinue()) {
+                          if (currentStep === 4) setShowStep4Errors(true);
+                          return;
+                        }
+                        setShowStep4Errors(false);
+                        setCurrentStep((s) => s + 1);
+                      }}
+                      disabled={false}
                       style={{ display: "flex", alignItems: "center", gap: "6px", padding: "12px 28px", borderRadius: "50px", cursor: canContinue() ? "pointer" : "not-allowed", background: canContinue() ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : "#EDE8D8", border: "none", fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "16px", color: canContinue() ? "white" : "#B0A890", boxShadow: canContinue() ? "0 4px 14px rgba(245,166,35,0.4)" : "none", transition: "all 0.2s" }}
                     >
                       Continue <ChevronRight size={16} />
