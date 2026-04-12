@@ -45,7 +45,7 @@ export default function Enrollment() {
             <div className="loc-highlight">
               <div className="loc-photos">
                 <div className="loc-photo">
-                  <Image src="/mclc_southscape_1.jpeg?v=2" alt="Southscape Commercial Building exterior" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
+                  <Image src="/mclc_southscape_1.jpeg?v=3" alt="Southscape Commercial Building exterior" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
                 </div>
                 <div className="loc-photo">
                   <Image src="/mclc_southscape_2.jpeg" alt="Southscape Commercial Building area" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
