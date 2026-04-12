@@ -15,6 +15,7 @@ const benefits: { label: string; subtitle?: string }[] = [
   { label: "Accessible & central location", subtitle: "Southscape, Talisay City" },
   { label: "Foundation Day / Family Day" },
   { label: "Near shops, food, & essential services" },
+  { label: "MCLC / Southscape Security Guard 24/7" },
 ];
 
 export default function Benefits() {
