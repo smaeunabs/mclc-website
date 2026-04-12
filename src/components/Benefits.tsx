@@ -1,16 +1,19 @@
 import { Gift } from "lucide-react";
 
 const benefits: { label: string; subtitle?: string }[] = [
-  { label: "Progress report cards" },
-  { label: "Daily communication book" },
+  { label: "Professional Licensed Teacher", subtitle: "Childhood Specialist" },
   { label: "Guidance & counseling", subtitle: "for students / parents / guardian" },
   { label: "Values formation" },
+  { label: "Progress report cards" },
+  { label: "Daily communication book" },
   { label: "Air-conditioned rooms" },
-  { label: "Foundation Day / Family Day" },
-  { label: "Professional Licensed Teacher", subtitle: "Childhood Specialist" },
+  { label: "MCLC Lounge Cafeteria" },
+  { label: "MCLC Adonai Music Room" },
+  { label: "Front Desk Officer" },
   { label: "Exclusive drop-off & pick-up area" },
   { label: "Free parking space" },
   { label: "Accessible & central location", subtitle: "Southscape, Talisay City" },
+  { label: "Foundation Day / Family Day" },
   { label: "Near shops, food, & essential services" },
 ];
 
