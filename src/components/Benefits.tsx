@@ -7,6 +7,7 @@ const benefits: { label: string; subtitle?: string }[] = [
   { label: "Values formation" },
   { label: "Air-conditioned rooms" },
   { label: "Foundation Day / Family Day" },
+  { label: "Professional Licensed Teacher", subtitle: "Childhood Specialist" },
 ];
 
 export default function Benefits() {
