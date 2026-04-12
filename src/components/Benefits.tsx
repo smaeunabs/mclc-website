@@ -9,7 +9,6 @@ const benefits: { label: string; subtitle?: string }[] = [
   { label: "Air-conditioned rooms" },
   { label: "MCLC Lounge Cafeteria" },
   { label: "MCLC Adonai Music Room" },
-  { label: "Front Desk Officer" },
   { label: "Exclusive drop-off & pick-up area" },
   { label: "Free parking space" },
   { label: "Accessible & central location", subtitle: "Southscape, Talisay City" },
