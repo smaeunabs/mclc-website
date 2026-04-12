@@ -7,6 +7,7 @@ const benefits: { label: string; subtitle?: string }[] = [
   { label: "Progress report cards" },
   { label: "Daily communication book" },
   { label: "Air-conditioned rooms" },
+  { label: "MCLC Exclusive Powder Room" },
   { label: "MCLC Lounge Cafeteria" },
   { label: "MCLC Adonai Music Room" },
   { label: "MCLC Exclusive drop-off & pick-up area" },
