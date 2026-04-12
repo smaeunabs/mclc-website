@@ -1,18 +1,12 @@
 import { Gift } from "lucide-react";
 
-const benefits = [
-  "School insurance",
-  "Honor roll treats",
-  "Progress report cards",
-  "Daily communication book",
-  "Guidance & counseling",
-  "Values formation",
-  "Merit scores",
-  "Air-conditioned rooms",
-  "Field trips",
-  "Tech voc skills",
-  "Sports Fest / Family Day",
-  "Academic Day Projection",
+const benefits: { label: string; subtitle?: string }[] = [
+  { label: "Progress report cards" },
+  { label: "Daily communication book" },
+  { label: "Guidance & counseling", subtitle: "for students / parents / guardian" },
+  { label: "Values formation" },
+  { label: "Air-conditioned rooms" },
+  { label: "Foundation Day / Family Day" },
 ];
 
 export default function Benefits() {
@@ -25,9 +19,14 @@ export default function Benefits() {
         <p className="ssub">No hidden surprises. Every MCLC student gets a rich, full school experience from day one.</p>
         <div className="bgrid">
           {benefits.map((item) => (
-            <div className="bitem" key={item}>
+            <div className="bitem" key={item.label}>
               <div className="bchk">✓</div>
-              {item}
+              <div>
+                {item.label}
+                {item.subtitle && (
+                  <div className="bitem-sub">{item.subtitle}</div>
+                )}
+              </div>
             </div>
           ))}
         </div>
