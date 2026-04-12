@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 
 export default function HeroSection() {
@@ -71,20 +72,14 @@ export default function HeroSection() {
           </div>
           <div className="hero-card">
             <div className="hero-img">
-              <svg width="150" height="120" viewBox="0 0 160 130" fill="none">
-                <rect x="74" y="8" width="12" height="28" rx="4" fill="#F5A623" opacity="0.5" />
-                <rect x="62" y="18" width="36" height="12" rx="4" fill="#F5A623" opacity="0.5" />
-                <circle cx="38" cy="68" r="16" fill="#FFD060" />
-                <path d="M18 115 Q18 90 38 90 Q58 90 58 115Z" fill="#FFD060" />
-                <circle cx="80" cy="62" r="18" fill="#F5A623" />
-                <path d="M58 115 Q58 86 80 86 Q102 86 102 115Z" fill="#F5A623" />
-                <circle cx="122" cy="68" r="16" fill="#FF6B3D" opacity="0.8" />
-                <path d="M102 115 Q102 90 122 90 Q142 90 142 115Z" fill="#FF6B3D" opacity="0.8" />
-                <circle cx="20" cy="40" r="5" fill="#30C87A" opacity="0.5" />
-                <circle cx="145" cy="36" r="4" fill="#9B6FE8" opacity="0.5" />
-                <circle cx="60" cy="28" r="3" fill="#3D9BE9" opacity="0.6" />
-                <circle cx="105" cy="46" r="3.5" fill="#F06292" opacity="0.4" />
-              </svg>
+              <Image
+                src="/images/mclc_kids.png"
+                alt="Happy children at Messiah Christian Learning Center"
+                fill
+                sizes="290px"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
+                priority
+              />
             </div>
             <h3>A School That Feels Like Home</h3>
             <p>Academics · Faith · Character · Fun</p>
