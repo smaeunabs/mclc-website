@@ -8,7 +8,7 @@ const photos = [
   {
     src: "/images/exterior.jpg",
     alt: "MCLC school storefront and facade in Talisay City, Cebu",
-    caption: "Our welcoming school entrance in Talisay City, Cebu",
+    caption: "Our welcoming school entrance in Southscape, Talisay City, Cebu",
   },
   {
     src: "/images/classroom-1.jpg",
