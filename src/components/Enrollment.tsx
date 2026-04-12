@@ -45,7 +45,7 @@ export default function Enrollment() {
             <div className="loc-highlight">
               <div className="loc-photos">
                 <div className="loc-photo">
-                  <Image src="/mclc_southscape_1.jpeg" alt="Southscape Commercial Building exterior" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
+                  <Image src="/mclc_southscape_1.jpeg?v=2" alt="Southscape Commercial Building exterior" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
                 </div>
                 <div className="loc-photo">
                   <Image src="/mclc_southscape_2.jpeg" alt="Southscape Commercial Building area" fill sizes="(max-width: 640px) 50vw, 200px" style={{ objectFit: "cover" }} />
@@ -53,7 +53,7 @@ export default function Enrollment() {
               </div>
               <h4 className="loc-heading">You&apos;re closer than you think.</h4>
               <p className="loc-body">
-                Located on the 2nd floor of Southscape Commercial Building, just behind Mani Mogo restaurant, MCLC is right in the heart of Talisay City. Everything your family needs is within reach: restaurants, shops, pharmacies, and more, all just steps away.
+                Located on the 2nd floor of Southscape Commercial Building, just behind Mani Mogo restaurant, MCLC is right in the heart of Talisay City. Everything your family needs is within reach: restaurants, shops, and more, all just steps away.
               </p>
               <p className="loc-caption">
                 <MapPin size={11} style={{ display: "inline", verticalAlign: "middle", marginRight: "4px", marginTop: "-1px" }} />
