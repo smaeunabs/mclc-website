@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import WhyMCLC from "@/components/WhyMCLC";
 import Programs from "@/components/Programs";
+import Facility from "@/components/Facility";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Benefits from "@/components/Benefits";
@@ -36,10 +37,20 @@ export default function Home() {
 
       <Programs />
 
-      {/* WAVE: Programs (#FFFBF0) → About (#2D2A3E) */}
+      {/* WAVE: Programs (#FFFBF0) → Facility (#FFFFFF) */}
       <div style={{ background: "#FFFBF0", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
         <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
           <rect x="0" y="0" width="1440" height="60" fill="#FFFBF0" />
+          <path d="M-2,30 C240,60 480,0 720,30 C960,60 1200,0 1442,30 L1442,60 L-2,60 Z" fill="#FFFFFF" />
+        </svg>
+      </div>
+
+      <Facility />
+
+      {/* WAVE: Facility (#FFFFFF) → About (#2D2A3E) */}
+      <div style={{ background: "#FFFFFF", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="60" fill="#FFFFFF" />
           <path d="M-2,20 C180,50 360,0 540,30 C720,60 900,10 1080,30 C1260,50 1380,15 1442,25 L1442,60 L-2,60 Z" fill="#2D2A3E" />
         </svg>
       </div>
