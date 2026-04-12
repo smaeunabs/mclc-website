@@ -22,6 +22,10 @@ import {
   Mail,
   X,
   ClipboardList,
+  FileText,
+  FileDown,
+  Printer,
+  Info,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -300,9 +304,13 @@ export default function EnrollPage() {
   const [showDraftBanner, setShowDraftBanner] = useState(false);
   const [savedDraft, setSavedDraft]       = useState<DraftState | null>(null);
   const [form, setForm]                   = useState<FormFields>(DEFAULT_FORM);
-  const [gcashReference, setGcashReference] = useState("");
-  const [gcashProofFile, setGcashProofFile] = useState<File | null>(null);
+  const [gcashReference, setGcashReference]   = useState("");
+  const [gcashProofFile, setGcashProofFile]   = useState<File | null>(null);
+  const [showGcashErrors, setShowGcashErrors] = useState(false);
+  const [psaFile, setPsaFile]                 = useState<File | null>(null);
   const gcashProofInputRef = useRef<HTMLInputElement>(null);
+  const psaInputRef        = useRef<HTMLInputElement>(null);
+  const dobInputRef        = useRef<HTMLInputElement>(null);
 
   const update = (field: keyof FormFields, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -357,7 +365,10 @@ export default function EnrollPage() {
       case 1: return form.program !== "";
       case 2: return !!(form.childFirstName && form.childLastName && form.childDOB && form.childSex);
       case 3: return !!(form.parentName && form.parentRelationship && form.parentContact && form.parentEmail && form.hearAboutUs);
-      case 4: return form.paymentMethod !== "";
+      case 4:
+        if (form.paymentMethod === "") return false;
+        if (form.paymentMethod === "gcash") return !!(gcashReference && gcashProofFile);
+        return true;
       case 5: return consent;
       default: return false;
     }
@@ -541,6 +552,7 @@ export default function EnrollPage() {
             <input type="hidden" name="payment_method"      value={PAYMENT_LABELS[form.paymentMethod] ?? form.paymentMethod} />
             <input type="hidden" name="referral_source"     value={HEAR_ABOUT_LABELS[form.hearAboutUs] ?? form.hearAboutUs} />
             <input type="hidden" name="notes"               value={form.additionalNotes || "(none)"} />
+            <input type="hidden" name="psa_uploaded"        value={psaFile ? "yes" : "no"} />
             {form.paymentMethod === "gcash" && (
               <input type="hidden" name="gcash_reference"      value={gcashReference || "(not provided)"} />
             )}
@@ -609,7 +621,21 @@ export default function EnrollPage() {
                       <InputField label="Last Name"  required value={form.childLastName}  onChange={(v) => update("childLastName", v)} />
                     </div>
                     <InputField label="Middle Name" optional value={form.childMiddleName} onChange={(v) => update("childMiddleName", v)} />
-                    <InputField label="Date of Birth" required type="date" value={form.childDOB} onChange={(v) => update("childDOB", v)} />
+                    <div>
+                      <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#2D2A3E", marginBottom: "0.5rem" }}>
+                        Date of Birth <span style={{ color: "#FF6B3D" }}>*</span>
+                      </label>
+                      <input
+                        ref={dobInputRef}
+                        type="date"
+                        value={form.childDOB}
+                        onChange={(e) => update("childDOB", e.target.value)}
+                        onClick={() => dobInputRef.current?.showPicker?.()}
+                        style={{ ...INPUT_STYLE, cursor: "pointer" }}
+                        onFocus={(e) => (e.currentTarget.style.borderColor = "#F5A623")}
+                        onBlur={(e) => (e.currentTarget.style.borderColor = "#E0D8C0")}
+                      />
+                    </div>
                     <div>
                       <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#2D2A3E", marginBottom: "0.6rem" }}>
                         Sex <span style={{ color: "#FF6B3D" }}>*</span>
@@ -629,6 +655,52 @@ export default function EnrollPage() {
                           );
                         })}
                       </div>
+                    </div>
+
+                    {/* PSA Birth Certificate upload */}
+                    <div style={{ paddingTop: "0.5rem", borderTop: "1px dashed #E0D8C0" }}>
+                      <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65, marginBottom: "0.75rem" }}>
+                        <span style={{ fontWeight: 700, color: "#2D2A3E" }}>
+                          <FileText size={13} style={{ display: "inline", verticalAlign: "middle", marginRight: "5px" }} />
+                          PSA Birth Certificate
+                        </span>{" "}
+                        <span style={{ fontWeight: 400, color: "#B0A890" }}>(optional)</span>
+                        <div style={{ marginTop: "4px" }}>Please upload a photo or scan of your child&apos;s PSA Birth Certificate. This is required for enrollment.</div>
+                      </div>
+                      <input
+                        ref={psaInputRef}
+                        type="file"
+                        accept="image/*,.pdf"
+                        style={{ display: "none" }}
+                        onChange={(e) => setPsaFile(e.target.files?.[0] ?? null)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => psaInputRef.current?.click()}
+                        style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "10px 18px", borderRadius: "12px", cursor: "pointer", background: "white", border: "2px solid #E0D8C0", fontFamily: "'Nunito', sans-serif", fontSize: "14px", fontWeight: 700, color: "#2D2A3E", transition: "all 0.2s" }}
+                        onMouseOver={(e) => { e.currentTarget.style.borderColor = "#F5A623"; e.currentTarget.style.color = "#C07800"; }}
+                        onMouseOut={(e) => { e.currentTarget.style.borderColor = "#E0D8C0"; e.currentTarget.style.color = "#2D2A3E"; }}
+                      >
+                        <FileText size={15} />
+                        {psaFile ? "Change file" : "Choose file"}
+                      </button>
+                      {psaFile ? (
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", padding: "8px 12px", borderRadius: "10px", background: "#CFFAE7", border: "1.5px solid #A8F0CC", fontSize: "13px", color: "#0B7A45", fontWeight: 600 }}>
+                          <CheckCircle size={14} />
+                          {psaFile.name}
+                        </div>
+                      ) : (
+                        <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginTop: "10px", padding: "12px 14px", borderRadius: "12px", background: "#FFF9EC", border: "1.5px solid #FFE49A" }}>
+                          <Info size={15} color="#C07800" style={{ flexShrink: 0, marginTop: "2px" }} />
+                          <div style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65 }}>
+                            No file attached. You can also bring or send a photocopy of the PSA Birth Certificate to:
+                            <ul style={{ margin: "6px 0 0 0", paddingLeft: "1.1rem" }}>
+                              <li>Email: <a href="mailto:support@mclc-cebu.com" style={{ color: "#F5A623", fontWeight: 700 }}>support@mclc-cebu.com</a> — subject: <em>PSA - [Child&apos;s Full Name]</em></li>
+                              <li>In person: Focuslab front desk officer, Unit No. B1-2-7, just across MCLC at Southscape, Talisay City</li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
@@ -764,6 +836,11 @@ export default function EnrollPage() {
                                   <div style={{ fontSize: "12px", color: "#B0A890", marginTop: "6px" }}>
                                     You can find the reference number in your GCash transaction history.
                                   </div>
+                                  {showGcashErrors && !gcashReference && (
+                                    <div style={{ fontSize: "12px", color: "#B83220", fontWeight: 700, marginTop: "6px" }}>
+                                      Please enter your GCash reference number.
+                                    </div>
+                                  )}
                                 </div>
 
                                 {/* Proof of payment upload */}
@@ -796,6 +873,11 @@ export default function EnrollPage() {
                                   ) : (
                                     <div style={{ fontSize: "12px", color: "#B0A890", marginTop: "6px" }}>
                                       Upload a screenshot of your payment confirmation.
+                                    </div>
+                                  )}
+                                  {showGcashErrors && !gcashProofFile && (
+                                    <div style={{ fontSize: "12px", color: "#B83220", fontWeight: 700, marginTop: "6px" }}>
+                                      Please upload your GCash payment screenshot.
                                     </div>
                                   )}
                                 </div>
@@ -858,6 +940,12 @@ export default function EnrollPage() {
                               <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{value}</span>
                             </div>
                           ))}
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>PSA Birth Certificate</span>
+                            <span style={{ fontSize: "13px", fontWeight: 700, textAlign: "right", color: psaFile ? "#0B7A45" : "#B83220" }}>
+                              {psaFile ? psaFile.name : "Not uploaded — please submit via email or in person"}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
@@ -914,6 +1002,38 @@ export default function EnrollPage() {
                         </div>
                       </div>
 
+                      {/* Enrollment form reminder box */}
+                      <div style={{ borderRadius: "18px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", border: "2px solid #FFE49A", padding: "1.25rem 1.5rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.6rem" }}>
+                          <FileDown size={20} color="#C07800" />
+                          <span style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "16px", color: "#2D2A3E" }}>Don&apos;t forget to submit your Enrollment Form!</span>
+                        </div>
+                        <p style={{ fontSize: "13px", color: "#7B7490", lineHeight: 1.65, marginBottom: "0.9rem" }}>
+                          After submitting this inquiry, you will need to complete and submit the official MCLC Enrollment Form to finalize your child&apos;s enrollment. You can:
+                        </p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1rem" }}>
+                          {[
+                            { Icon: Printer,       text: <>Print, fill out, and email to <a href="mailto:support@mclc-cebu.com" style={{ color: "#F5A623", fontWeight: 700 }}>support@mclc-cebu.com</a> — subject: <em>Enrollment - [Your Child&apos;s Name]</em></> },
+                            { Icon: MapPin,        text: "Bring the completed form in person to Focuslab front desk officer, Unit No. B1-2-7, just across MCLC at Southscape, Talisay City. Don't forget your child's PSA Birth Certificate photocopy." },
+                            { Icon: ClipboardList, text: "Walk in to Focuslab front desk officer, Unit No. B1-2-7, just across MCLC — a physical copy of the enrollment form is available there for you to fill out onsite." },
+                          ].map(({ Icon, text }, i) => (
+                            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                              <Icon size={14} color="#C07800" style={{ flexShrink: 0, marginTop: "3px" }} />
+                              <span style={{ fontSize: "13px", color: "#2D2A3E", lineHeight: 1.65 }}>{text}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <a
+                          href="/MCLC_Enrollment_Form.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 700, color: "#C07800", textDecoration: "none" }}
+                        >
+                          <Download size={14} />
+                          Download Enrollment Form (PDF)
+                        </a>
+                      </div>
+
                       {/* Consent checkbox */}
                       <label style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "1.25rem", borderRadius: "14px", background: "#FFF9EC", border: "2px solid #FFE49A", cursor: "pointer" }}>
                         <input
@@ -954,7 +1074,15 @@ export default function EnrollPage() {
                   {currentStep < STEPS.length ? (
                     <button
                       type="button"
-                      onClick={() => { if (!canContinue()) return; setCurrentStep((s) => s + 1); }}
+                      onClick={() => {
+                        if (currentStep === 4 && form.paymentMethod === "gcash" && (!gcashReference || !gcashProofFile)) {
+                          setShowGcashErrors(true);
+                          return;
+                        }
+                        if (!canContinue()) return;
+                        setShowGcashErrors(false);
+                        setCurrentStep((s) => s + 1);
+                      }}
                       style={{ display: "flex", alignItems: "center", gap: "6px", padding: "12px 28px", borderRadius: "50px", cursor: canContinue() ? "pointer" : "not-allowed", background: canContinue() ? "linear-gradient(135deg, #F5A623, #FF6B3D)" : "#EDE8D8", border: "none", fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "16px", color: canContinue() ? "white" : "#B0A890", boxShadow: canContinue() ? "0 4px 14px rgba(245,166,35,0.4)" : "none", transition: "all 0.2s" }}
                     >
                       Continue <ChevronRight size={16} />
