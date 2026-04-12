@@ -26,9 +26,9 @@ export default function Navbar() {
           <li><a href="#why" onClick={e => { e.preventDefault(); scrollTo("why"); }}>Why MCLC</a></li>
           <li><a href="#programs" onClick={e => { e.preventDefault(); scrollTo("programs"); }}>Programs</a></li>
           <li><a href="#about" onClick={e => { e.preventDefault(); scrollTo("about"); }}>About</a></li>
-          <li><a href="#enrollment" onClick={e => { e.preventDefault(); scrollTo("enrollment"); }}>Enroll</a></li>
+          <li><a href="/enroll">Enroll</a></li>
         </ul>
-        <button className="nav-cta" onClick={() => scrollTo("enrollment")}>Enroll Now</button>
+        <a href="/enroll" className="nav-cta">Enroll Now</a>
         <button className="hamburger" onClick={() => setOpen(!open)} aria-label="Menu">
           <span />
           <span />
@@ -41,7 +41,7 @@ export default function Navbar() {
         <a href="#programs" onClick={e => { e.preventDefault(); scrollTo("programs"); }}>Programs</a>
         <a href="#about" onClick={e => { e.preventDefault(); scrollTo("about"); }}>About Us</a>
         <a href="#inclusion" onClick={e => { e.preventDefault(); scrollTo("inclusion"); }}>Benefits</a>
-        <a href="#enrollment" onClick={e => { e.preventDefault(); scrollTo("enrollment"); }}>Enroll Now</a>
+        <a href="/enroll">Enroll Now</a>
       </div>
     </>
   );

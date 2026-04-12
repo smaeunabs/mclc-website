@@ -52,8 +52,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="hero-btns">
-            <a href="#enrollment" className="btn-primary"
-              onClick={e => { e.preventDefault(); document.getElementById("enrollment")?.scrollIntoView({ behavior: "smooth" }); }}>
+            <a href="/enroll" className="btn-primary">
               Reserve Your Child&apos;s Spot <Sparkles size={14} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
             </a>
             <a href="#programs" className="btn-outline"
