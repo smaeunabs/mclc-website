@@ -39,7 +39,7 @@ export default function Testimonials() {
               </svg>
             </div>
             <div>
-              <div className="iname">Parent of a Daycare student</div>
+              <div className="iname">Parent of a K1 student</div>
               <div className="irole">Talisay City, Cebu</div>
             </div>
           </div>
