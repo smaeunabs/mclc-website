@@ -34,6 +34,7 @@ const groups: BenefitGroup[] = [
       { label: "MCLC Free parking space" },
       { label: "Accessible & central location", subtitle: "Southscape, Talisay City" },
       { label: "Near shops, food, & essential services" },
+      { label: "Across Focuslab Coworking Space", subtitle: "High-speed Wi-Fi & cozy coworking space" },
     ],
   },
   {
