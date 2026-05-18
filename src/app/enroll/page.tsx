@@ -68,6 +68,8 @@ const TUITION = {
     materials: "₱1,850",
     uniform: "₱1,900",
     idMisc: "₱650",
+    totalWithUniform: "₱34,400",
+    totalWithoutUniform: "₱32,500",
     enrollWithUniform: "₱7,400",
     enrollWithoutUniform: "₱5,500",
   },
@@ -76,10 +78,12 @@ const TUITION = {
     registration: "₱3,500",
     monthly: "₱3,500",
     annualTuition: "₱31,500",
-    materialsLabel: "Books & Materials (Annual)",
+    materialsLabel: "Learning Materials (Annual)",
     materials: "₱2,250",
     uniform: "₱2,200",
     idMisc: "₱700",
+    totalWithUniform: "₱40,150",
+    totalWithoutUniform: "₱37,950",
     enrollWithUniform: "₱8,650",
     enrollWithoutUniform: "₱6,450",
   },
@@ -88,10 +92,12 @@ const TUITION = {
     registration: "₱4,000",
     monthly: "₱4,000",
     annualTuition: "₱36,000",
-    materialsLabel: "Books & Materials (Annual)",
+    materialsLabel: "Learning Materials (Annual)",
     materials: "₱2,750",
     uniform: "₱2,500",
     idMisc: "₱800",
+    totalWithUniform: "₱46,050",
+    totalWithoutUniform: "₱43,550",
     enrollWithUniform: "₱10,050",
     enrollWithoutUniform: "₱7,550",
   },
@@ -210,43 +216,82 @@ function InputField({
 function TuitionFeeCard({ program }: { program: Program }) {
   if (!program || !(program in TUITION)) return null;
   const fees = TUITION[program as keyof typeof TUITION];
-  const rows = [
-    { label: "Registration Fee",            value: fees.registration },
-    { label: "Monthly Tuition",             value: fees.monthly },
-    { label: "Annual Tuition (10 months)",  value: fees.annualTuition },
-    { label: fees.materialsLabel,           value: fees.materials },
-    { label: "Uniform",                     value: fees.uniform },
-    { label: "ID & Miscellaneous",          value: fees.idMisc },
+
+  const BRAND_ORANGE = "#E76F2A";
+  const NAVY = "#2D2A3E";
+  const MUTED = "#6B6878";
+
+  const rows: { label: string; value: string; subline?: string }[] = [
+    { label: "Registration Fee",           value: fees.registration },
+    {
+      label: "Annual Tuition (10 months)",
+      value: fees.annualTuition,
+      subline: `or 9 monthly payments of ${fees.monthly} · 10th month free`,
+    },
+    { label: fees.materialsLabel,          value: fees.materials },
+    { label: "Uniform",                    value: fees.uniform },
+    { label: "ID",                         value: fees.idMisc },
   ];
+
   return (
     <div style={{ borderRadius: "18px", border: "2px solid #EDE8D8", overflow: "hidden", marginBottom: "1.5rem" }}>
       <div style={{ padding: "12px 18px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", borderBottom: "2px solid #EDE8D8" }}>
-        <div style={{ fontSize: "10px", fontWeight: 800, color: "#FF6B3D", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "2px" }}>
+        <div style={{ fontSize: "10px", fontWeight: 800, color: BRAND_ORANGE, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "2px" }}>
           Tuition &amp; Fees &mdash; SY 2026&ndash;2027
         </div>
-        <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "17px", color: "#2D2A3E" }}>
+        <div style={{ fontFamily: "'Fredoka', cursive", fontWeight: 500, fontSize: "17px", color: NAVY }}>
           {fees.name}
         </div>
       </div>
-      {rows.map(({ label, value }) => (
-        <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "9px 18px", borderBottom: "1px solid #F5EDD8" }}>
-          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>{label}</span>
-          <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700 }}>{value}</span>
+
+      {rows.map(({ label, value, subline }) => (
+        <div key={label} style={{ padding: "9px 18px", borderBottom: "1px solid #F5EDD8" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>{label}</span>
+            <span style={{ fontSize: "13px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{value}</span>
+          </div>
+          {subline && (
+            <div style={{ marginTop: "4px", fontSize: "13px", color: MUTED, fontWeight: 400, lineHeight: 1.4 }}>
+              {subline}
+            </div>
+          )}
         </div>
       ))}
-      <div style={{ padding: "14px 18px", background: "linear-gradient(135deg, #FFF9EC, #FFE8CC)", borderTop: "2px solid #EDE8D8" }}>
-        <div style={{ fontSize: "10px", fontWeight: 800, color: "#FF6B3D", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "10px" }}>
-          Due Upon Enrollment
+
+      {/* Total Tuition Fee band */}
+      <div style={{ padding: "12px 18px", background: "#FBF3E1", borderTop: "0.5px solid rgba(231, 111, 42, 0.18)" }}>
+        <div style={{ fontSize: "11px", fontWeight: 800, color: BRAND_ORANGE, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "8px" }}>
+          Total Tuition Fee
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "6px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px", gap: "12px" }}>
           <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
-          <span style={{ fontFamily: "'Fredoka', cursive", fontSize: "20px", color: "#F5A623", fontWeight: 500 }}>{fees.enrollWithUniform}</span>
+          <span style={{ fontSize: "14px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{fees.totalWithUniform}</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
           <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>Without Uniform</span>
-          <span style={{ fontFamily: "'Fredoka', cursive", fontSize: "20px", color: "#2D2A3E", fontWeight: 500 }}>{fees.enrollWithoutUniform}</span>
+          <span style={{ fontSize: "14px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{fees.totalWithoutUniform}</span>
         </div>
-        <div style={{ marginTop: "10px", paddingTop: "10px", borderTop: "1px dashed #E0D8C0", fontSize: "12px", color: "#B0A890", fontStyle: "italic" }}>
+      </div>
+
+      {/* Due Upon Enrollment */}
+      <div style={{ padding: "14px 18px", background: "#FFE5C2", borderTop: "2px solid #EDE8D8" }}>
+        <div style={{ marginBottom: "10px", display: "flex", alignItems: "baseline", flexWrap: "wrap", columnGap: "6px", rowGap: "2px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 800, color: BRAND_ORANGE, textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            Due Upon Enrollment
+          </span>
+          <span style={{ fontSize: "11px", color: MUTED, fontWeight: 400 }}>
+            &middot; deductible from total tuition fee
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "6px", gap: "12px" }}>
+          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
+          <span style={{ fontSize: "20px", color: BRAND_ORANGE, fontWeight: 600, whiteSpace: "nowrap" }}>{fees.enrollWithUniform}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
+          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>Without Uniform</span>
+          <span style={{ fontSize: "20px", color: NAVY, fontWeight: 600, whiteSpace: "nowrap" }}>{fees.enrollWithoutUniform}</span>
+        </div>
+        <div style={{ marginTop: "10px", paddingTop: "10px", borderTop: "0.5px dashed #E0D8C0", fontSize: "12px", color: MUTED, fontStyle: "italic" }}>
           After-School Care at &#8369;500 per hour
         </div>
       </div>
