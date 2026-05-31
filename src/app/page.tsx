@@ -5,6 +5,7 @@ import Programs from "@/components/Programs";
 import Facility from "@/components/Facility";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
+import Tuition from "@/components/Tuition";
 import Benefits from "@/components/Benefits";
 import Enrollment from "@/components/Enrollment";
 import FaithBanner from "@/components/FaithBanner";
@@ -67,11 +68,21 @@ export default function Home() {
 
       <Testimonials />
 
-      {/* WAVE: Testimonials (#FFF9EC) → Benefits (#FFFBF0) */}
+      {/* WAVE: Testimonials (#FFF9EC) → Tuition (#FFFFFF) */}
       <div style={{ background: "#FFF9EC", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
         <svg width="100%" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
           <rect x="0" y="0" width="1440" height="80" fill="#FFF9EC" />
-          <path d="M-2,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1442,40 L1442,80 L-2,80 Z" fill="#FFFBF0" />
+          <path d="M-2,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1380,20 1442,40 L1442,80 L-2,80 Z" fill="#FFFFFF" />
+        </svg>
+      </div>
+
+      <Tuition />
+
+      {/* WAVE: Tuition (#FFFFFF) → Benefits (#FFFBF0) */}
+      <div style={{ background: "#FFFFFF", lineHeight: 0, display: "block", margin: 0, padding: 0, overflow: "hidden", marginTop: "-2px" }}>
+        <svg width="100%" height="60" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <rect x="0" y="0" width="1440" height="60" fill="#FFFFFF" />
+          <path d="M-2,30 C240,60 480,0 720,30 C960,60 1200,0 1442,30 L1442,60 L-2,60 Z" fill="#FFFBF0" />
         </svg>
       </div>
 
