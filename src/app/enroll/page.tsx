@@ -88,7 +88,7 @@ const TUITION = {
     enrollWithoutUniform: "₱6,450",
   },
   kinder1: {
-    name: "Kinder 1 (K1)",
+    name: "Pre-Kinder",
     registration: "₱4,000",
     monthly: "₱4,000",
     annualTuition: "₱36,000",
@@ -108,7 +108,7 @@ const TUITION = {
 const PROGRAM_LABELS: Record<string, string> = {
   playgroup: "Playgroup",
   nursery: "Nursery",
-  kinder1: "Kinder 1 (K1)",
+  kinder1: "Pre-Kinder",
 };
 
 const RELATIONSHIP_LABELS: Record<string, string> = {
@@ -630,7 +630,7 @@ export default function EnrollPage() {
                     {([
                       { value: "playgroup", label: "Playgroup",     subtitle: "Ages 2 to 3", Icon: Smile,         bg: "#CFFAE7", borderBase: "#A8F0CC", iconBg: "#A8F0CC", iconColor: "#0B7A45" },
                       { value: "nursery",   label: "Nursery",       subtitle: "Ages 3 to 4", Icon: BookOpen,      bg: "#FFF9EC", borderBase: "#FFE49A", iconBg: "#FFE49A", iconColor: "#C07800" },
-                      { value: "kinder1",   label: "Kinder 1 (K1)", subtitle: "Ages 4 to 5", Icon: GraduationCap, bg: "#FFE5DC", borderBase: "#FFB8A0", iconBg: "#FFB8A0", iconColor: "#7A2E00" },
+                      { value: "kinder1",   label: "Pre-Kinder", subtitle: "Ages 4 to 5", Icon: GraduationCap, bg: "#FFE5DC", borderBase: "#FFB8A0", iconBg: "#FFB8A0", iconColor: "#7A2E00" },
                     ] as const).map(({ value, label, subtitle, Icon, bg, borderBase, iconBg, iconColor }) => {
                       const selected = form.program === value;
                       return (

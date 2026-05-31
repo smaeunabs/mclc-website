@@ -165,7 +165,7 @@ export default function Programs() {
             </svg>
           </div>
           <div className="pbody">
-            <h3>Kinder 1 (K1)</h3>
+            <h3>Pre-Kinder</h3>
             <span className="atag at3">Ages 4&ndash;5</span>
             <p>Ready to shine! A more structured classroom experience that builds pre-reading, writing, and numeracy skills rooted in faith and creativity.</p>
             <ul className="pfeat">
@@ -174,7 +174,7 @@ export default function Programs() {
               <li><span className="fck or">✓</span>Bible study &amp; Christian values</li>
             </ul>
             <a href="/enroll" className="btn-primary" style={{ marginTop: "1.25rem", display: "inline-block", fontSize: "15px", padding: "12px 28px" }}>
-              Enroll in Kinder 1 (K1)
+              Enroll in Pre-Kinder
             </a>
           </div>
         </div>

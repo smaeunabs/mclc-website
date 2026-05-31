@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Messiah Christian Learning Center | Preschool in Southscape, Talisay City, Cebu",
   description:
-    "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Kinder 1 programs.",
+    "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Pre-Kinder programs.",
   keywords:
     "preschool in Talisay Cebu, preschool in Minglanilla Cebu, Christian school Talisay Cebu, Christian preschool Cebu, Southscape Talisay school, nursery school Talisay, kinder school Talisay Cebu, playgroup Talisay Cebu, early childhood education Talisay, best preschool south Cebu, MCLC Talisay, Messiah Christian Learning Center",
   icons: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Messiah Christian Learning Center | Preschool in Southscape, Talisay City, Cebu",
     description:
-      "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Kinder 1 programs.",
+      "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Pre-Kinder programs.",
     type: "website",
     url: "https://www.mclc-cebu.com",
     images: [{ url: "https://www.mclc-cebu.com/mclc_logo.png", width: 512, height: 512, alt: "Messiah Christian Learning Center — Preschool in Talisay City, Cebu" }],
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Messiah Christian Learning Center | Preschool in Southscape, Talisay City, Cebu",
     description:
-      "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Kinder 1 programs.",
+      "Enroll your child at MCLC — a Christ-centered preschool in Southscape, Talisay City, Cebu serving Minglanilla and nearby communities. Offering Playgroup, Nursery, and Pre-Kinder programs.",
     images: ["https://www.mclc-cebu.com/mclc_logo.png"],
   },
 };
@@ -46,7 +46,7 @@ const jsonLd = {
       alternateName: "MCLC",
       url: "https://www.mclc-cebu.com",
       description:
-        "Christ-centered preschool in Southscape, Talisay City, Cebu offering Playgroup, Nursery, and Kinder 1 programs for children ages 2–5.",
+        "Christ-centered preschool in Southscape, Talisay City, Cebu offering Playgroup, Nursery, and Pre-Kinder programs for children ages 2–5.",
       foundingDate: "2025",
       address: {
         "@type": "PostalAddress",
@@ -61,7 +61,7 @@ const jsonLd = {
         { "@type": "City", name: "Minglanilla" },
         { "@type": "AdministrativeArea", name: "South Cebu" },
       ],
-      educationalLevel: ["Playgroup", "Nursery", "Kinder 1"],
+      educationalLevel: ["Playgroup", "Nursery", "Pre-Kinder"],
       telephone: "+639898018408",
       email: "support@mclc-cebu.com",
       logo: "https://www.mclc-cebu.com/mclc_logo.png",

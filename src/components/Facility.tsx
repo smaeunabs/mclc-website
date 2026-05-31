@@ -27,7 +27,7 @@ const photos = [
   },
   {
     src: "/images/classroom-4.jpg",
-    alt: "Study carrels in the Kinder 1 learning area at MCLC",
+    alt: "Study carrels in the Pre-Kinder learning area at MCLC",
     caption: "A cozy space designed for focused, individual learning",
   },
   {

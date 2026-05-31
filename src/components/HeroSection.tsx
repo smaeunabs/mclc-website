@@ -76,7 +76,7 @@ export default function HeroSection() {
             />
             <div className="hero-photo-badge">
               <div className="hero-photo-badge-num">3 Programs</div>
-              <div className="hero-photo-badge-names">Playgroup · Nursery · K1</div>
+              <div className="hero-photo-badge-names">Playgroup · Nursery · Pre-Kinder</div>
             </div>
           </div>
         </div>

@@ -39,7 +39,7 @@ export default function Testimonials() {
               </svg>
             </div>
             <div>
-              <div className="iname">Parent of a K1 student</div>
+              <div className="iname">Parent of a Pre-Kinder student</div>
               <div className="irole">Talisay City, Cebu</div>
             </div>
           </div>
@@ -64,12 +64,11 @@ export default function Testimonials() {
         </div>
       </div>
       <a
-        href="#enrollment"
+        href="/enroll"
         className="btn-primary"
         style={{ fontSize: "17px", padding: "16px 40px", position: "relative", zIndex: 2 }}
-        onClick={e => { e.preventDefault(); document.getElementById("enrollment")?.scrollIntoView({ behavior: "smooth" }); }}
       >
-        Join Our Family Today <Home size={16} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
+        Join These Families <Home size={16} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
       </a>
     </section>
   );
