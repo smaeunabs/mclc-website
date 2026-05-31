@@ -66,12 +66,13 @@ const TUITION = {
     annualTuition: "₱27,000",
     materialsLabel: "Learning Materials (Annual)",
     materials: "₱1,850",
-    uniform: "₱1,900",
+    uniform: null,
     idMisc: "₱650",
-    totalWithUniform: "₱34,400",
-    totalWithoutUniform: "₱32,500",
-    enrollWithUniform: "₱7,400",
-    enrollWithoutUniform: "₱5,500",
+    misc: "₱1,500",
+    totalWithUniform: null,
+    totalWithoutUniform: "₱34,000",
+    enrollWithUniform: null,
+    enrollWithoutUniform: "₱7,000",
   },
   nursery: {
     name: "Nursery",
@@ -82,10 +83,11 @@ const TUITION = {
     materials: "₱2,250",
     uniform: "₱2,200",
     idMisc: "₱700",
-    totalWithUniform: "₱40,150",
-    totalWithoutUniform: "₱37,950",
-    enrollWithUniform: "₱8,650",
-    enrollWithoutUniform: "₱6,450",
+    misc: "₱1,500",
+    totalWithUniform: "₱41,650",
+    totalWithoutUniform: "₱39,450",
+    enrollWithUniform: "₱10,150",
+    enrollWithoutUniform: "₱7,950",
   },
   kinder1: {
     name: "Pre-Kinder",
@@ -96,10 +98,11 @@ const TUITION = {
     materials: "₱2,750",
     uniform: "₱2,500",
     idMisc: "₱800",
-    totalWithUniform: "₱46,050",
-    totalWithoutUniform: "₱43,550",
-    enrollWithUniform: "₱10,050",
-    enrollWithoutUniform: "₱7,550",
+    misc: "₱1,500",
+    totalWithUniform: "₱47,550",
+    totalWithoutUniform: "₱45,050",
+    enrollWithUniform: "₱11,550",
+    enrollWithoutUniform: "₱9,050",
   },
 } as const;
 
@@ -226,11 +229,12 @@ function TuitionFeeCard({ program }: { program: Program }) {
     {
       label: "Annual Tuition (10 months)",
       value: fees.annualTuition,
-      subline: `or 9 monthly payments of ${fees.monthly} · 10th month free`,
+      subline: `Payable as 9 monthly installments of ${fees.monthly} (no tuition due on the 10th month)`,
     },
     { label: fees.materialsLabel,          value: fees.materials },
-    { label: "Uniform",                    value: fees.uniform },
+    ...(fees.uniform ? [{ label: "Uniform", value: fees.uniform }] : []),
     { label: "ID",                         value: fees.idMisc },
+    { label: "Miscellaneous",              value: fees.misc },
   ];
 
   return (
@@ -263,12 +267,14 @@ function TuitionFeeCard({ program }: { program: Program }) {
         <div style={{ fontSize: "11px", fontWeight: 800, color: BRAND_ORANGE, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "8px" }}>
           Total Tuition Fee
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px", gap: "12px" }}>
-          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
-          <span style={{ fontSize: "14px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{fees.totalWithUniform}</span>
-        </div>
+        {fees.totalWithUniform && (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4px", gap: "12px" }}>
+            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
+            <span style={{ fontSize: "14px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{fees.totalWithUniform}</span>
+          </div>
+        )}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
-          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>Without Uniform</span>
+          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>{fees.totalWithUniform ? "Without Uniform" : "Total"}</span>
           <span style={{ fontSize: "14px", color: NAVY, fontWeight: 700, whiteSpace: "nowrap" }}>{fees.totalWithoutUniform}</span>
         </div>
       </div>
@@ -283,12 +289,14 @@ function TuitionFeeCard({ program }: { program: Program }) {
             &middot; deductible from total tuition fee
           </span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "6px", gap: "12px" }}>
-          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
-          <span style={{ fontSize: "20px", color: BRAND_ORANGE, fontWeight: 600, whiteSpace: "nowrap" }}>{fees.enrollWithUniform}</span>
-        </div>
+        {fees.enrollWithUniform && (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "6px", gap: "12px" }}>
+            <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>With Uniform</span>
+            <span style={{ fontSize: "20px", color: BRAND_ORANGE, fontWeight: 600, whiteSpace: "nowrap" }}>{fees.enrollWithUniform}</span>
+          </div>
+        )}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
-          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>Without Uniform</span>
+          <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600 }}>{fees.enrollWithUniform ? "Without Uniform" : "Total"}</span>
           <span style={{ fontSize: "20px", color: NAVY, fontWeight: 600, whiteSpace: "nowrap" }}>{fees.enrollWithoutUniform}</span>
         </div>
         <div style={{ marginTop: "10px", paddingTop: "10px", borderTop: "0.5px dashed #E0D8C0", fontSize: "12px", color: MUTED, fontStyle: "italic" }}>
@@ -1034,12 +1042,14 @@ export default function EnrollPage() {
                           </div>
                           {fees && (
                             <>
-                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
-                                <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Due (with uniform)</span>
-                                <span style={{ fontSize: "13px", color: "#F5A623", fontWeight: 700, textAlign: "right" }}>{fees.enrollWithUniform}</span>
-                              </div>
+                              {fees.enrollWithUniform && (
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem", borderBottom: "1px solid #F5EDD8" }}>
+                                  <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Due (with uniform)</span>
+                                  <span style={{ fontSize: "13px", color: "#F5A623", fontWeight: 700, textAlign: "right" }}>{fees.enrollWithUniform}</span>
+                                </div>
+                              )}
                               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "8px 16px", gap: "1rem" }}>
-                                <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>Due (without uniform)</span>
+                                <span style={{ fontSize: "13px", color: "#7B7490", fontWeight: 600, flexShrink: 0 }}>{fees.enrollWithUniform ? "Due (without uniform)" : "Due upon enrollment"}</span>
                                 <span style={{ fontSize: "13px", color: "#2D2A3E", fontWeight: 700, textAlign: "right" }}>{fees.enrollWithoutUniform}</span>
                               </div>
                             </>

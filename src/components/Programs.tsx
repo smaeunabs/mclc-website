@@ -129,7 +129,7 @@ export default function Programs() {
           </div>
         </div>
 
-        {/* Kinder 1 — child holding up a star */}
+        {/* Pre-Kinder — child holding up a star */}
         <div className="pcard">
           <div className="ptop pt3">
             <svg
