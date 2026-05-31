@@ -68,7 +68,7 @@ export default function Testimonials() {
         className="btn-primary"
         style={{ fontSize: "17px", padding: "16px 40px", position: "relative", zIndex: 2 }}
       >
-        Join These Families <Home size={16} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
+        Join Our Family Today <Home size={16} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
       </a>
     </section>
   );
